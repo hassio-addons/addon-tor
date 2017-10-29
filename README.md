@@ -343,6 +343,8 @@ SOFTWARE.
 [keepchangelog]: http://keepachangelog.com/en/1.0.0/
 [license-shield]: https://img.shields.io/github/license/hassio-addons/addon-tor.svg
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2017.svg
+[orbot]: https://guardianproject.info/apps/orbot
+[orfox]: https://guardianproject.info/apps/orfox
 [patreon-shield]: https://img.shields.io/badge/donate-patreon-blue.svg
 [patreon]: https://www.patreon.com/frenck
 [paypal-shield]: https://img.shields.io/badge/donate-paypal-blue.svg
@@ -354,5 +356,3 @@ SOFTWARE.
 [repository]: https://github.com/hassio-addons/repository
 [semver]: http://semver.org/spec/v2.0.0.htm
 [tor-hidden-service]: https://www.torproject.org/docs/hidden-services.html.en
-[orbot]: https://guardianproject.info/apps/orbot
-[orfox]: https://guardianproject.info/apps/orfox
