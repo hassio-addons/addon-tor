@@ -7,4 +7,4 @@
 source /usr/lib/hassio-addons/base.sh
 
 # Run the Tor daemon
-tor
+exec tor
