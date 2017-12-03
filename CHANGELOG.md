@@ -7,9 +7,28 @@ and this project adheres to [Semantic Versioning][semantic-versioning].
 
 ## Unreleased
 
+No unreleased changed yet.
+
+## [v1.0.0] (2017-12-03)
+
+[Full Changelog][v0.1.1-v1.0.0]
+
+### Changed
+
+- Promoted project stage to "production ready"
+- Upgrades add-on base image to v1.2.0
+- Improves tor S6 run script
+- Updates add-on URLs to new community forum URL
+- Moves copy of rootfs at a later stage
+
+### Fixed
+
+- Added Auth cookies in example torcc file #1 (@gerard33)
+
 ### Removed
 
 - Removes `repository.json` to prevent user to install wrong repo
+- Removes Gratipay from README, since it is EOL
 
 ## [v0.1.1] (2017-11-08)
 
@@ -29,4 +48,6 @@ and this project adheres to [Semantic Versioning][semantic-versioning].
 [semantic-versioning]: http://semver.org/spec/v2.0.0.html
 [v0.1.0-v0.1.1]: https://github.com/hassio-addons/addon-tor/compare/v0.1.0...v0.1.1
 [v0.1.0]: https://github.com/hassio-addons/addon-tor/tree/v0.1.0
+[v0.1.1-v1.0.0]: https://github.com/hassio-addons/addon-tor/compare/v0.1.1...v1.0.0
 [v0.1.1]: https://github.com/hassio-addons/addon-tor/tree/v0.1.1
+[v1.0.0]: https://github.com/hassio-addons/addon-tor/tree/v1.0.0
