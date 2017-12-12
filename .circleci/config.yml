@@ -42,35 +42,24 @@ defaults: &defaults
                   --target tor \
                   --${ARCH}
               fi
-      - deploy:
-          name: Send notification to Microbadger
-          command: |
-              if [[ "${CIRCLE_BRANCH}" = "master" || ! -z "${CIRCLE_TAG:-}" ]];
-              then
-                curl -X POST https://hooks.microbadger.com/images/${MICROBADGER_WEBHOOK}
-              fi
 
 jobs:
   aarch64:
     <<: *defaults
     environment:
       ARCH: aarch64
-      MICROBADGER_WEBHOOK: hassioaddons/tor-aarch64/CmVVF1vurmH1ThQey5TZh95zMHw=
   amd64:
     <<: *defaults
     environment:
       ARCH: amd64
-      MICROBADGER_WEBHOOK: hassioaddons/tor-amd64/q2LKUWVqL2MYdLrJbrYSvhYCl_U=
   armhf:
     <<: *defaults
     environment:
       ARCH: armhf
-      MICROBADGER_WEBHOOK: hassioaddons/tor-armhf/fQSq9zNwxh_8cg6XyPXY-a27tEU=
   i386:
     <<: *defaults
     environment:
       ARCH: i386
-      MICROBADGER_WEBHOOK: hassioaddons/tor-i386/CDyggvEIEomn7eqsLJhyK4crTUo=
 
 workflows:
   version: 2
