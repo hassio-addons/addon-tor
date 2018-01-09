@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning][semantic-versioning].
 
 No unreleased changed yet.
 
+## [v1.1.0] (2018-01-09)
+
+[Full Changelog][v0.1.1-v1.0.0]
+
+### Fixed
+
+- Fixes an issue with the Tor SOCKS proxy
+
+### Changed
+
+- Removes Microbadger notification hooks
+- Prevents possible future Docker login issue
+- Pass local CircleCI Docker socket into the build container
+- Use image tagged as test as a cache resource
+- Updated maintenance year, it is 2018
+- Upgrades add-on base image to v1.3.1
+
 ## [v1.0.0] (2017-12-03)
 
 [Full Changelog][v0.1.1-v1.0.0]
@@ -50,4 +67,6 @@ No unreleased changed yet.
 [v0.1.0]: https://github.com/hassio-addons/addon-tor/tree/v0.1.0
 [v0.1.1-v1.0.0]: https://github.com/hassio-addons/addon-tor/compare/v0.1.1...v1.0.0
 [v0.1.1]: https://github.com/hassio-addons/addon-tor/tree/v0.1.1
+[v1.0.0-v1.1.0]: https://github.com/hassio-addons/addon-tor/compare/v1.0.0...v1.1.0
 [v1.0.0]: https://github.com/hassio-addons/addon-tor/tree/v1.0.0
+[v1.1.0]: https://github.com/hassio-addons/addon-tor/tree/v1.1.0
