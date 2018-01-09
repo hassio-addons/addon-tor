@@ -11,7 +11,7 @@ No unreleased changed yet.
 
 ## [v1.1.0] (2018-01-09)
 
-[Full Changelog][v0.1.1-v1.0.0]
+[Full Changelog][v1.0.0-v1.1.0]
 
 ### Fixed
 
