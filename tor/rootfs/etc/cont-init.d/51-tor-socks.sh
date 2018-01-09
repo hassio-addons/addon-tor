@@ -7,7 +7,7 @@
 source /usr/lib/hassio-addons/base.sh
 
 if hass.config.true 'socks'; then
-    echo 'SOCKSPort 9050' >> /etc/tor/torrc
+    echo 'SOCKSPort 0.0.0.0:9050' >> /etc/tor/torrc
 else
     echo 'SOCKSPort 0' >> /etc/tor/torrc
 fi
