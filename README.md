@@ -339,7 +339,7 @@ SOFTWARE.
 [issue]: https://github.com/hassio-addons/addon-tor/issues
 [keepchangelog]: http://keepachangelog.com/en/1.0.0/
 [license-shield]: https://img.shields.io/github/license/hassio-addons/addon-tor.svg
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2017.svg
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2018.svg
 [orbot]: https://guardianproject.info/apps/orbot
 [orfox]: https://guardianproject.info/apps/orfox
 [patreon-shield]: https://img.shields.io/badge/donate-patreon-blue.svg
