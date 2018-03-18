@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning][semantic-versioning].
 
 No unreleased changed yet.
 
+## [v1.2.0] (2018-03-18)
+
+[Full Changelog][v1.1.1-v1.2.0]
+
+### Added
+
+- Adds add-on icon
+
+### Changed
+
+- Upgrades add-on base image to v1.3.3
+- Optimizes add-on logo
+
 ## [v1.1.1] (2018-01-19)
 
 [Full Changelog][v1.1.0-v1.1.1]
@@ -79,4 +92,6 @@ No unreleased changed yet.
 [v1.0.0]: https://github.com/hassio-addons/addon-tor/tree/v1.0.0
 [v1.1.0-v1.1.1]: https://github.com/hassio-addons/addon-tor/compare/v1.1.0...v1.1.1
 [v1.1.0]: https://github.com/hassio-addons/addon-tor/tree/v1.1.0
+[v1.1.1-v1.2.0]: https://github.com/hassio-addons/addon-tor/compare/v1.1.1...v1.2.0
 [v1.1.1]: https://github.com/hassio-addons/addon-tor/tree/v1.1.1
+[v1.2.0]: https://github.com/hassio-addons/addon-tor/tree/v1.2.0
