@@ -1,11 +1,14 @@
 ARG BUILD_FROM=hassioaddons/base-amd64:1.3.3
+# hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
 # Copy root filesystem
 COPY rootfs /
 
 # Setup base
-RUN apk add --no-cache tor
+RUN \
+    apk add --no-cache \
+        tor=0.3.1.9-r0
 
 # Build arugments
 ARG BUILD_ARCH
