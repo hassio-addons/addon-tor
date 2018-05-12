@@ -2,17 +2,17 @@
 
 [![GitHub Release][releases-shield]][releases]
 ![Project Stage][project-stage-shield]
+[![License][license-shield]](LICENSE.md)
+
+[![GitLab CI][gitlabci-shield]][gitlabci]
 ![Project Maintenance][maintenance-shield]
 [![GitHub Activity][commits-shield]][commits]
-[![License][license-shield]](LICENSE.md)
 
 [![Bountysource][bountysource-shield]][bountysource]
 [![Discord][discord-shield]][discord]
 [![Community Forum][forum-shield]][forum]
 
-[![Patreon][patreon-shield]][patreon]
-[![PayPal][paypal-shield]][paypal]
-[![Bitcoin][bitcoin-shield]][bitcoin]
+[![Buy me a coffee][buymeacoffee-shield]][buymeacoffee]
 
 Protect your privacy and access Home Assistant via Tor.
 
@@ -58,21 +58,25 @@ comparison to installing any other Hass.io add-on.
 [![Docker Version][armhf-version-shield]][armhf-microbadger]
 [![Docker Layers][armhf-layers-shield]][armhf-microbadger]
 [![Docker Pulls][armhf-pulls-shield]][armhf-dockerhub]
+[![Anchore Image Overview][armhf-anchore-shield]][armhf-anchore]
 
 [![Docker Architecture][aarch64-arch-shield]][aarch64-dockerhub]
 [![Docker Version][aarch64-version-shield]][aarch64-microbadger]
 [![Docker Layers][aarch64-layers-shield]][aarch64-microbadger]
 [![Docker Pulls][aarch64-pulls-shield]][aarch64-dockerhub]
+[![Anchore Image Overview][aarch64-anchore-shield]][aarch64-anchore]
 
 [![Docker Architecture][amd64-arch-shield]][amd64-dockerhub]
 [![Docker Version][amd64-version-shield]][amd64-microbadger]
 [![Docker Layers][amd64-layers-shield]][amd64-microbadger]
 [![Docker Pulls][amd64-pulls-shield]][amd64-dockerhub]
+[![Anchore Image Overview][amd64-anchore-shield]][amd64-anchore]
 
 [![Docker Architecture][i386-arch-shield]][i386-dockerhub]
 [![Docker Version][i386-version-shield]][i386-microbadger]
 [![Docker Layers][i386-layers-shield]][i386-microbadger]
 [![Docker Pulls][i386-pulls-shield]][i386-dockerhub]
+[![Anchore Image Overview][i386-anchore-shield]][i386-anchore]
 
 ## Configuration
 
@@ -294,28 +298,34 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+[aarch64-anchore-shield]: https://anchore.io/service/badges/image/21aff221e4aecaddc5808d54f7b89442e735985d58fa1d52f97ffca288bfc3a6
+[aarch64-anchore]: https://anchore.io/image/dockerhub/hassioaddons%2Ftor-aarch64%3Alatest
 [aarch64-arch-shield]: https://img.shields.io/badge/architecture-aarch64-blue.svg
 [aarch64-dockerhub]: https://hub.docker.com/r/hassioaddons/tor-aarch64
 [aarch64-layers-shield]: https://images.microbadger.com/badges/image/hassioaddons/tor-aarch64.svg
 [aarch64-microbadger]: https://microbadger.com/images/hassioaddons/tor-aarch64
 [aarch64-pulls-shield]: https://img.shields.io/docker/pulls/hassioaddons/tor-aarch64.svg
 [aarch64-version-shield]: https://images.microbadger.com/badges/version/hassioaddons/tor-aarch64.svg
+[amd64-anchore-shield]: https://anchore.io/service/badges/image/c03172a85eff910fa4a21419d377a587fcc1ded0b15e19973fa4397be14ae3b0
+[amd64-anchore]: https://anchore.io/image/dockerhub/hassioaddons%2Ftor-amd64%3Alatest
 [amd64-arch-shield]: https://img.shields.io/badge/architecture-amd64-blue.svg
 [amd64-dockerhub]: https://hub.docker.com/r/hassioaddons/tor-amd64
 [amd64-layers-shield]: https://images.microbadger.com/badges/image/hassioaddons/tor-amd64.svg
 [amd64-microbadger]: https://microbadger.com/images/hassioaddons/tor-amd64
 [amd64-pulls-shield]: https://img.shields.io/docker/pulls/hassioaddons/tor-amd64.svg
 [amd64-version-shield]: https://images.microbadger.com/badges/version/hassioaddons/tor-amd64.svg
+[armhf-anchore-shield]: https://anchore.io/service/badges/image/b0b6630d7f5ba437c3099dea54c2739de2d643235ed5c85aa20a01d9837d06c9
+[armhf-anchore]: https://anchore.io/image/dockerhub/hassioaddons%2Ftor-armhf%3Alatest
 [armhf-arch-shield]: https://img.shields.io/badge/architecture-armhf-blue.svg
 [armhf-dockerhub]: https://hub.docker.com/r/hassioaddons/tor-armhf
 [armhf-layers-shield]: https://images.microbadger.com/badges/image/hassioaddons/tor-armhf.svg
 [armhf-microbadger]: https://microbadger.com/images/hassioaddons/tor-armhf
 [armhf-pulls-shield]: https://img.shields.io/docker/pulls/hassioaddons/tor-armhf.svg
 [armhf-version-shield]: https://images.microbadger.com/badges/version/hassioaddons/tor-armhf.svg
-[bitcoin-shield]: https://img.shields.io/badge/donate-bitcoin-blue.svg
-[bitcoin]: https://blockchain.info/payment_request?address=3GVzgN6NpVtfXnyg5dQnaujtqVTEDBCtAH
 [bountysource-shield]: https://img.shields.io/bountysource/team/hassio-addons/activity.svg
 [bountysource]: https://www.bountysource.com/teams/hassio-addons/issues
+[buymeacoffee-shield]: https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-2.svg
+[buymeacoffee]: https://www.buymeacoffee.com/frenck
 [commits-shield]: https://img.shields.io/github/commit-activity/y/hassio-addons/addon-tor.svg
 [commits]: https://github.com/hassio-addons/addon-tor/commits/master
 [contributors]: https://github.com/hassio-addons/addon-tor/graphs/contributors
@@ -324,7 +334,11 @@ SOFTWARE.
 [forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg
 [forum]: https://community.home-assistant.io/t/community-hass-io-add-on-tor/33822?u=frenck
 [frenck]: https://github.com/frenck
+[gitlabci-shield]: https://gitlab.com/hassio-addons/addon-tor/badges/master/pipeline.svg
+[gitlabci]: https://gitlab.com/hassio-addons/addon-tor/pipelines
 [home-assistant]: https://home-assistant.io
+[i386-anchore-shield]: https://anchore.io/service/badges/image/82c4fde4af525422d3e1e706676882b93abf4b8bf7345d70c86e64737cc9fb81
+[i386-anchore]: https://anchore.io/image/dockerhub/hassioaddons%2Ftor-i386%3Alatest
 [i386-arch-shield]: https://img.shields.io/badge/architecture-i386-blue.svg
 [i386-dockerhub]: https://hub.docker.com/r/hassioaddons/tor-i386
 [i386-layers-shield]: https://images.microbadger.com/badges/image/hassioaddons/tor-i386.svg
@@ -337,10 +351,6 @@ SOFTWARE.
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2018.svg
 [orbot]: https://guardianproject.info/apps/orbot
 [orfox]: https://guardianproject.info/apps/orfox
-[patreon-shield]: https://img.shields.io/badge/donate-patreon-blue.svg
-[patreon]: https://www.patreon.com/frenck
-[paypal-shield]: https://img.shields.io/badge/donate-paypal-blue.svg
-[paypal]: https://www.paypal.me/FranckNijhof
 [project-stage-shield]: https://img.shields.io/badge/project%20stage-production%20ready-brightgreen.svg
 [reddit]: https://reddit.com/r/homeassistant
 [releases-shield]: https://img.shields.io/github/release/hassio-addons/addon-tor.svg
