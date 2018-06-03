@@ -27,7 +27,7 @@ if hass.config.true 'hidden_services'; then
     done
 
     if hass.config.true 'stealth'; then
-        client_names=($(hass.config.get 'client_names'))
+        mapfile -t client_names < <(hass.config.get 'client_names')
         IFS=','
         echo "HiddenServiceAuthorizeClient stealth ${client_names[*]}" \
             >> /etc/tor/torrc
