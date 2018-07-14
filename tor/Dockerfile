@@ -8,7 +8,7 @@ COPY rootfs /
 # Setup base
 RUN \
     apk add --no-cache \
-        tor@edge=0.3.3.6-r0
+        tor=0.3.3.7-r0
 
 # Build arugments
 ARG BUILD_ARCH
