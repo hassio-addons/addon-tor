@@ -222,6 +222,8 @@ such as Tasker or Owntracks.
 To our knowledge, there are currently no iOS apps available supporting the
 stealth feature.
 
+You can use the standard FireFox browser to access .onion domains, but you need to enable this in FireFix settings. In FireFox, type "about:config" in the address bar and click 'I accept the risk' to open the advanced settings. Search for "onion" to find the setting "network.dns.blockDotOnion" and toggle the setting so that it is set to "false". Now you should be able to access .onion sites.
+
 ## Changelog & Releases
 
 This repository keeps a change log using [GitHub's releases][releases]
