@@ -8,12 +8,17 @@ source /usr/lib/hassio-addons/base.sh
 
 declare virtual_port
 declare target_port
+declare port
+declare host
 declare -a client_names
 
-if hass.config.true 'hidden_services'; then
-    echo 'HiddenServiceDir /ssl/tor/hidden_service' >> /etc/tor/torrc
+torrc='/etc/tor/torrc'
 
-    for port in $(hass.config.get 'ports'); do
+if hass.config.true 'hidden_services'; then
+    echo 'HiddenServiceDir /ssl/tor/hidden_service' >> "$torrc"
+    for entry in $(hass.config.get 'hosts|keys[]'); do
+        host=$(hass.config.get "hosts[${entry}].host")
+        port=$(hass.config.get "hosts[${entry}].port")
         if [[ "${port}" = *':'* ]]; then
             virtual_port="${port%%:*}"
             target_port="${port#*:}"
@@ -21,17 +26,16 @@ if hass.config.true 'hidden_services'; then
             virtual_port="${port}"
             target_port="${port}"
         fi
-
-        echo "HiddenServicePort ${target_port} homeassistant:${virtual_port}" \
-            >> /etc/tor/torrc
+        echo "HiddenServicePort ${target_port} ${host}:${virtual_port}" \
+            >> "$torrc"
     done
 
     if hass.config.true 'stealth'; then
         mapfile -t client_names < <(hass.config.get 'client_names')
         IFS=','
         echo "HiddenServiceAuthorizeClient stealth ${client_names[*]}" \
-            >> /etc/tor/torrc
+            >> "$torrc"
     fi
 
-    echo 'HiddenServiceAllowUnknownPorts 0' >> /etc/tor/torrc
+    echo 'HiddenServiceAllowUnknownPorts 0' >> "$torrc"
 fi
