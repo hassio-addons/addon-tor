@@ -7,7 +7,7 @@
 source /usr/lib/hassio-addons/base.sh
 
 # A hidden service without any ports is kinda useless
-if hass.config.true 'hidden_services' && ! hass.config.has_value 'hosts'; then
+if hass.config.true 'hidden_services' && ! hass.config.has_value 'ports'; then
     hass.die 'Hidden services where enabled, but without ports!'
 fi
 

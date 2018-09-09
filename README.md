@@ -96,11 +96,8 @@ Example add-on configuration:
     "haremote1",
     "haremote2"
   ],
-  "hosts": [
-    {
-      "host": "homeassistant",
-      "port": 8123
-    }
+  "ports": [
+    8123
   ]
 ```
 
@@ -177,7 +174,7 @@ accessible for clients without authorization anymore.
 Clients need to put this authorization data in their configuration file using
 HidServAuth.
 
-### Option: `hosts`
+### Option: `ports`
 
 Configures hosts and ports to publish via a Tor Hidden Service.
 You can list multiple hosts and ports to publish.
@@ -185,23 +182,22 @@ You can list multiple hosts and ports to publish.
 For example:
 
 ```json
-  "hosts": [
-    {
-      "host": "homeassistant",
-      "port": "8123:80"
-    },
-    {
-      "host": "homeassistant",
-      "port": 22
-    }
+  "ports": [
+    "homeassistant:8123:80",
+    22
   ]
 ```
 
-The `host` parameter can be a hostname or an IP address of a device on your¨
-local network.
+The accepted syntaxs of this configuration is:
 
-This example publishes port `8123` as port `80` on the Tor network,
-while port `22` will simply be published as port `22` on the Tor network.
+- hostname:local_port:published_port `"homeassistant:8123:8080"`
+- local_ip:local_port:published_port `"192.168.1.60:8123:8080"`
+- hostname:local_port `"homeassistant:8123"`
+- local_port:published_port `"8123:8080"`
+- local_port `"8123"`
+
+If you do not define a published port, the local port will be used.
+If you do not define a hostname or IP adress `homeassistant` will be used.
 
 ## Tor client access setup
 
