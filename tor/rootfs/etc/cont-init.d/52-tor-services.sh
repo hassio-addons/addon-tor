@@ -12,7 +12,7 @@ declare port
 declare host
 declare -a client_names
 
-torrc='/etc/tor/torrc'
+readonly torrc='/etc/tor/torrc'
 
 if hass.config.true 'hidden_services'; then
     echo 'HiddenServiceDir /ssl/tor/hidden_service' >> "$torrc"
