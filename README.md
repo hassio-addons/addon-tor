@@ -97,9 +97,8 @@ Example add-on configuration:
     "haremote2"
   ],
   "ports": [
-    "8123:80"
+    8123
   ]
-}
 ```
 
 **Note**: _This is just an example, don't copy and past it! Create your own!_
@@ -177,21 +176,28 @@ HidServAuth.
 
 ### Option: `ports`
 
-Configures ports to publish via a Tor Hidden Service. You can list multiple
-port to publish and also allows you to publish a virtual port, which may differ
-from the actual port used on your Hass.io instance.
+Configures hosts and ports to publish via a Tor Hidden Service.
+You can list multiple hosts and ports to publish.
 
 For example:
 
 ```json
-"ports": [
-  "8123:80",
-  "22"
-]
+  "ports": [
+    "homeassistant:8123:80",
+    22
+  ]
 ```
 
-This publishes port `8123` as port `80` on the Tor network, while port `22`
-will simply be published as port `22` on the Tor network.
+The accepted syntaxs of this configuration is:
+
+- hostname:local_port:published_port `"homeassistant:8123:8080"`
+- local_ip:local_port:published_port `"192.168.1.60:8123:8080"`
+- hostname:local_port `"homeassistant:8123"`
+- local_port:published_port `"8123:8080"`
+- local_port `"8123"`
+
+If you do not define a published port, the local port will be used.
+If you do not define a hostname or IP adress `homeassistant` will be used.
 
 ## Tor client access setup
 
