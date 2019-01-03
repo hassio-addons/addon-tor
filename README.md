@@ -211,7 +211,7 @@ Add the authentication cookie to your `torrc` client configuration on your
 laptop or mobile device. It would look like this:
 
 ```bash
-HidServAuth abcdef1234567890.onion adEG02FAsdq/GAFeNSeLvc haremote1
+HidServAuth abcdef1234567890.onion adEG02FAsdq/GAFeNSeLvc
 ```
 
 For Tor Browser on Windows, Mac or Linux, you can find the torrc file here:
