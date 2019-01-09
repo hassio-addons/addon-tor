@@ -13,7 +13,7 @@ RUN \
     apk add --no-cache \
         tor=0.3.3.7-r0
 
-# Build arugments
+# Build arguments
 ARG BUILD_ARCH
 ARG BUILD_DATE
 ARG BUILD_REF
