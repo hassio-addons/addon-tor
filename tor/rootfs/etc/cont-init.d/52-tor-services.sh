@@ -1,11 +1,8 @@
-#!/usr/bin/with-contenv bash
+#!/usr/bin/with-contenv bashio
 # ==============================================================================
 # Community Hass.io Add-ons: Tor
 # Configures the hidden services
 # ==============================================================================
-# shellcheck disable=SC1091
-source /usr/lib/hassio-addons/base.sh
-
 declare virtual_port
 declare target_port
 declare port
@@ -14,9 +11,9 @@ declare -a client_names
 
 readonly torrc='/etc/tor/torrc'
 
-if hass.config.true 'hidden_services'; then
+if bashio::config.true 'hidden_services'; then
     echo 'HiddenServiceDir /ssl/tor/hidden_service' >> "$torrc"
-    for port in $(hass.config.get 'ports'); do
+    for port in $(bashio::config 'ports'); do
         count=$(echo "${port}" | sed 's/[^:]//g'| awk '{ print length }')
         if [[ "${count}" == 0 ]]; then
             host='homeassistant'
@@ -39,7 +36,7 @@ if hass.config.true 'hidden_services'; then
             virtual_port=$(echo "${port}" | cut -f2 -d:)
             target_port=$(echo "${port}" | cut -f3 -d:)
         else
-            hass.log.warning "$port Are not correct format, skipping..."
+            bashio::log.warning "$port Are not correct format, skipping..."
         fi
         if [[ "${count}" -le 2 ]]; then
             echo "HiddenServicePort ${target_port} ${host}:${virtual_port}" \
@@ -47,8 +44,8 @@ if hass.config.true 'hidden_services'; then
         fi
     done
 
-    if hass.config.true 'stealth'; then
-        mapfile -t client_names < <(hass.config.get 'client_names')
+    if bashio::config.true 'stealth'; then
+        mapfile -t client_names < <(bashio::config 'client_names')
         IFS=','
         echo "HiddenServiceAuthorizeClient stealth ${client_names[*]}" \
             >> "$torrc"

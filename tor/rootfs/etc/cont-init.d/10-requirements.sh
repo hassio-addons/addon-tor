@@ -1,20 +1,35 @@
-#!/usr/bin/with-contenv bash
+#!/usr/bin/with-contenv bashio
 # ==============================================================================
 # Community Hass.io Add-ons: Tor
 # This files check if all user configuration requirements are met
 # ==============================================================================
-# shellcheck disable=SC1091
-source /usr/lib/hassio-addons/base.sh
 
 # A hidden service without any ports is kinda useless
-if hass.config.true 'hidden_services' && ! hass.config.has_value 'ports'; then
-    hass.die 'Hidden services where enabled, but without ports!'
+if bashio::config.true 'hidden_services' \
+    && ! bashio::config.has_value 'ports'; then
+    bashio::log.fatal
+    bashio::log.fatal 'Add-on configuration is incomplete.'
+    bashio::log.fatal
+    bashio::log.fatal 'Hidden services where enabled, using the'
+    bashio::log.fatal '"hidden_services" add-on configuration option,'
+    bashio::log.fatal 'But the "port" option does not contain any values!'
+    bashio::log.fatal
+    bashio::log.fatal 'Please configure the "ports" option.'
+    bashio::exit.nok
 fi
 
 # Checks if client names where configured when using stealth mode
-if hass.config.true 'hidden_services' \
-    && hass.config.true 'stealth' \
-    && ! hass.config.has_value 'client_names';
+if bashio::config.true 'hidden_services' \
+    && bashio::config.true 'stealth' \
+    && ! bashio::config.has_value 'client_names';
 then
-    hass.die 'Stealth is enabled, but no client names where set.'
+    bashio::log.fatal
+    bashio::log.fatal 'Add-on configuration is incomplete.'
+    bashio::log.fatal
+    bashio::log.fatal 'Stealth mode is enabled, using the "stealth" add-on'
+    bashio::log.fatal 'configuration option, but there are no client names'
+    bashio::log.fatal 'configured in the "client_names" add-on option.'
+    bashio::log.fatal
+    bashio::log.fatal 'Please configure the "client_names" option.'
+    bashio::exit.nok
 fi
