@@ -24,7 +24,6 @@
     "ssl:rw"
   ],
   "options": {
-    "log_level": "info",
     "socks": false,
     "hidden_services": true,
     "stealth": false,
@@ -34,7 +33,7 @@
       ]
   },
   "schema": {
-    "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)",
+    "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)?",
     "socks": "bool",
     "hidden_services": "bool",
     "stealth": "bool",
