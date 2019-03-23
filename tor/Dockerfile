@@ -11,7 +11,7 @@ COPY rootfs /
 # Setup base
 RUN \
     apk add --no-cache \
-        tor=0.3.3.7-r0
+        tor=0.3.4.11-r0
 
 # Build arguments
 ARG BUILD_ARCH
