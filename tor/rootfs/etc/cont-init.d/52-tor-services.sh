@@ -7,7 +7,7 @@ declare virtual_port
 declare target_port
 declare port
 declare host
-declare -a client_names
+declare clientname
 
 readonly torrc='/etc/tor/torrc'
 
