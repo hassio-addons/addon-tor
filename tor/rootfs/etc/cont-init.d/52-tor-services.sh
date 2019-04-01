@@ -45,10 +45,9 @@ if bashio::config.true 'hidden_services'; then
     done
 
     if bashio::config.true 'stealth'; then
-        for client in $(bashio::config 'client_names|keys'); do
-            clientname=$(bashio::config "client_names[${client}]")
+        while read -r clientname; do
             echo "HiddenServiceAuthorizeClient stealth $clientname" >> "$torrc"
-        done
+        done <<< "$(bashio::config 'client_names')"
     fi
 
     echo 'HiddenServiceAllowUnknownPorts 0' >> "$torrc"
