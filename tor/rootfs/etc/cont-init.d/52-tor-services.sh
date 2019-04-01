@@ -13,6 +13,7 @@ readonly torrc='/etc/tor/torrc'
 
 if bashio::config.true 'hidden_services'; then
     echo 'HiddenServiceDir /ssl/tor/hidden_service' >> "$torrc"
+    echo 'HiddenServiceVersion 2' >> "$torrc"
     for port in $(bashio::config 'ports'); do
         count=$(echo "${port}" | sed 's/[^:]//g'| awk '{ print length }')
         if [[ "${count}" == 0 ]]; then
