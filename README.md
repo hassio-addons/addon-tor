@@ -141,7 +141,7 @@ Enabling `stealth` can prevent a DDOS because if the client does not have the
 key, it can not find the path to the server. It does, however, require
 configuration of the client as well.
 
-### Option: `client_name`
+### Option: `client_names`
 
 This option is required as soon as you enable the `stealth` option.
 
