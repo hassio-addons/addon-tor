@@ -181,7 +181,7 @@ If you do not define a hostname or IP adress `homeassistant` will be used.
 ## Tor client access setup
 
 Using this add-on, you can access your Home Assistant instance over Tor from
-your laptop or mobile device, using Tor Browser and other software.
+your laptop or mobile device, using Tor Browser and other software. Please make sure you use "dot onion" site name AND port, like ```abcdef1234567890.onion:8123```
 
 However, with the `stealth` option enabled, the client would need extra
 configuration to be able to connect.
