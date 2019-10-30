@@ -54,7 +54,7 @@ comparison to installing any other Hass.io add-on.
 1. Install the "Tor" add-on.
 1. Start the "Tor" add-on
 1. Check the logs of the "Tor" add-on to see if everything went well. The log
-  will also display your Tor .onion address.
+  will also display your Tor .onion address. The address is only generated once, and does not change during the lifetime of the add-on.
 
 **NOTE**: Do not add this repository to Hass.io, please use:
 `https://github.com/hassio-addons/repository`.
