@@ -50,14 +50,10 @@ applications through your Hass.io installation.
 The installation of this add-on is pretty straightforward and not different in
 comparison to installing any other Hass.io add-on.
 
-1. [Add our Hass.io add-ons repository][repository] to your Hass.io instance.
-1. Install the "Tor" add-on.
+1. Search for the "Tor" add-on in the Hass.io add-on store and install it.
 1. Start the "Tor" add-on
 1. Check the logs of the "Tor" add-on to see if everything went well. The log
   will also display your Tor .onion address.
-
-**NOTE**: Do not add this repository to Hass.io, please use:
-`https://github.com/hassio-addons/repository`.
 
 ## Configuration
 
