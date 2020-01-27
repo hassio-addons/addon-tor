@@ -14,7 +14,7 @@ if bashio::config.true 'hidden_services'; then
         sleep 1
     done
 
-    grep -m 1 "Bootstrapped 100%: Done" <&3 >/dev/null 2>&1
+    grep -m 1 "Bootstrapped 100% (done): Done" <&3 >/dev/null 2>&1
 
     kill "$(pgrep tor)" >/dev/null 2>&1
 
