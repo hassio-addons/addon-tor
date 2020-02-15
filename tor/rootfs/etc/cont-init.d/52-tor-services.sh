@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Community Hass.io Add-ons: Tor
+# Home Assistant Community Add-on: Tor
 # Configures the hidden services
 # ==============================================================================
 declare virtual_port

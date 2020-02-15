@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Community Hass.io Add-ons: Tor
+# Home Assistant Community Add-on: Tor
 # Listen for connections from SOCKS-speaking applications (or not)
 # ==============================================================================
 if bashio::config.true 'socks'; then

@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Community Hass.io Add-ons: Tor
+# Home Assistant Community Add-on: Tor
 # This files check if all user configuration requirements are met
 # ==============================================================================
 

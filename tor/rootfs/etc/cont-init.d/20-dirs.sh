@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Community Hass.io Add-ons: Tor
+# Home Assistant Community Add-on: Tor
 # Ensures necessary directories exists
 # ==============================================================================
 if ! bashio::fs.directory_exists '/ssl/tor'; then
