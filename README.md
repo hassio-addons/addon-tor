@@ -61,19 +61,16 @@ comparison to installing any other Hass.io add-on.
 
 Example add-on configuration:
 
-```json
-{
-  "log_level": "info",
-  "socks": true,
-  "hidden_services": true,
-  "stealth": true,
-  "client_names": [
-    "haremote1",
-    "haremote2"
-  ],
-  "ports": [
-    8123
-  ]
+```yaml
+log_level: info
+socks: true
+hidden_services: true
+stealth: true
+client_names:
+  - haremote1
+  - haremote2
+ports:
+  - 8123
 ```
 
 **Note**: _This is just an example, don't copy and past it! Create your own!_
