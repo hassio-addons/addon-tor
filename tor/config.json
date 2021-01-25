@@ -10,6 +10,9 @@
   "ports": {
     "9050/tcp": 9050
   },
+  "ports_description": {
+    "9050/tcp": "Tor SOCKS proxy port"
+  },
   "map": ["ssl:rw"],
   "options": {
     "socks": false,
