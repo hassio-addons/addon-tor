@@ -11,6 +11,7 @@ if bashio::config.true 'hidden_services'; then
     exec 3< <(tor)
 
     until bashio::fs.file_exists "${hostname_file}"; do
+        bashio::log.info "Waiting for service to start..."
         sleep 1
     done
 
@@ -20,15 +21,6 @@ if bashio::config.true 'hidden_services'; then
 
     bashio::log.info '---------------------------------------------------------'
     bashio::log.info 'Your Home Assistant instance is available on Tor!'
-
-    if bashio::config.true 'stealth'; then
-        bashio::log.info 'Addresses & Auth cookies:'
-        while read -r line; do
-            bashio::log.info "${line}"
-        done <"${hostname_file}"
-    else
-        bashio::log.info "Address: $(<"${hostname_file}")"
-    fi
-
+    bashio::log.info "Address: $(<"${hostname_file}")"
     bashio::log.info '---------------------------------------------------------'
 fi

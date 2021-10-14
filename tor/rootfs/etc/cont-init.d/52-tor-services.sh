@@ -10,10 +10,10 @@ declare host
 declare clientname
 
 readonly torrc='/etc/tor/torrc'
+readonly hidden_service_dir='/ssl/tor/hidden_service'
 
 if bashio::config.true 'hidden_services'; then
-    echo 'HiddenServiceDir /ssl/tor/hidden_service' >> "$torrc"
-    echo 'HiddenServiceVersion 3' >> "$torrc"
+    echo "HiddenServiceDir $hidden_service_dir" >> "$torrc"
     for port in $(bashio::config 'ports'); do
         count=$(echo "${port}" | sed 's/[^:]//g'| awk '{ print length }')
         if [[ "${count}" == 0 ]]; then
@@ -46,8 +46,33 @@ if bashio::config.true 'hidden_services'; then
     done
 
     if bashio::config.true 'stealth'; then
+        # Following the documentation at:
+        # https://community.torproject.org/onion-services/advanced/client-auth/
         while read -r clientname; do
-            echo "HiddenServiceAuthorizeClient stealth $clientname" >> "$torrc"
+            # Generate a private key
+            openssl genpkey -algorithm x25519 -out /tmp/k1.prv.pem
+            # Format keys into base32, removing spaces.
+            # Using `sed` to prepare the string so we don't need
+            # the external tool (base64pem from basez) suggested
+            # in the documentation.
+            # Private key
+            cat /tmp/k1.prv.pem \
+                | sed -e '/----.*PRIVATE KEY----\|^[[:space:]]*$/d' \
+                | base64 -d \
+                | tail -c 32 \
+                | base32 \
+                | sed 's/=//g' > /tmp/k1.prv.key
+            # Public
+            openssl pkey -in /tmp/k1.prv.pem -pubout \
+                | sed -e '/----.*PUBLIC KEY----\|^[[:space:]]*$/d' \
+                | base64 -d \
+                | tail -c 32 \
+                | base32 \
+                | sed 's/=//g' > /tmp/k1.pub.key
+            # Create authorized client file
+            echo "descriptor:x25519:`cat /tmp/k1.pub.key`" \
+                > $hidden_service_dir/authorized_clients/${clientname}.auth
+            bashio::log.info "Private key for ${clientname}: `cat /tmp/k1.prv.key`"
         done <<< "$(bashio::config 'client_names')"
     fi
 

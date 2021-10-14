@@ -8,10 +8,10 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Copy root filesystem
 COPY rootfs /
 
-# Setup base
-RUN \
-    apk add --no-cache \
-        tor=0.4.5.10-r0
+# Install latest stable version of tor,
+# openssl for private key generation and
+# coreutils for base64/base32 commands
+RUN apk add --no-cache tor openssl coreutils
 
 # Build arguments
 ARG BUILD_ARCH
