@@ -73,6 +73,10 @@ if bashio::config.true 'hidden_services'; then
             echo "descriptor:x25519:`cat /tmp/k1.pub.key`" \
                 > $hidden_service_dir/authorized_clients/${clientname}.auth
             bashio::log.info "Private key for ${clientname}: `cat /tmp/k1.prv.key`"
+            # Delete the keys, as we don't need them anymore
+            rm /tmp/k1.prv.pem
+            rm /tmp/k1.prv.key
+            rm /tmp/k1.pub.key
         done <<< "$(bashio::config 'client_names')"
     fi
 
