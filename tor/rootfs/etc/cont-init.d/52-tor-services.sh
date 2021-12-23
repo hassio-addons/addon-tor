@@ -16,9 +16,6 @@ readonly hidden_service_dir='/ssl/tor/hidden_service'
 if bashio::config.true 'hidden_services'; then
     echo "HiddenServiceDir $hidden_service_dir" >> "$torrc"
     
-    # Only need until V3 is not default version on the tor package 
-    echo "HiddenServiceVersion 3" >> "$torrc"
-    
     for port in $(bashio::config 'ports'); do
         count=$(echo "${port}" | sed 's/[^:]//g'| awk '{ print length }')
         if [[ "${count}" == 0 ]]; then
