@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base/amd64:10.2.2
+ARG BUILD_FROM=ghcr.io/hassio-addons/base/amd64:11.0.0
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -8,13 +8,10 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Copy root filesystem
 COPY rootfs /
 
-# Install tor, openssl for private key
-# generation and coreutils for base64/base32
-# commands
-RUN apk add --no-cache \
-        tor=0.4.6.7-r0 \
-        openssl=3.0.0-r2 \
-        coreutils=9.0-r1
+# Setup base
+RUN \
+    apk add --no-cache \
+        tor=0.4.6.8-r0
 
 # Build arguments
 ARG BUILD_ARCH
