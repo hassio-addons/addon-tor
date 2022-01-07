@@ -12,9 +12,9 @@ COPY rootfs /
 # generation and coreutils for base64/base32
 # commands
 RUN apk add --no-cache \
-        tor \
-        openssl \
-        coreutils
+        tor=0.4.6.9-r1 \
+        openssl=1.1.1m-r1 \
+        coreutils=9.0-r2
 
 # Build arguments
 ARG BUILD_ARCH
