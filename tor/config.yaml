@@ -25,10 +25,12 @@ options:
   client_names: []
   ports:
     - "8123"
+  relay: false
 schema:
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
   socks: bool
   hidden_services: bool
+  relay: bool
   stealth: bool
   client_names:
     - match(^[A-Za-z0-9+-_]{1,16}$)
