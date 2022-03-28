@@ -14,8 +14,10 @@ arch:
 init: false
 ports:
   9050/tcp: 9050
+  9001/tcp: 9001
 ports_description:
   9050/tcp: Tor SOCKS proxy port
+  9001/tcp: Tor OR Port
 map:
   - ssl:rw
 options:
@@ -26,6 +28,8 @@ options:
   ports:
     - "8123"
   relay: false
+  RelayBandwidthRate: "1 MB"
+  RelayBandwidthBurst: "1 MB"
 schema:
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
   socks: bool
