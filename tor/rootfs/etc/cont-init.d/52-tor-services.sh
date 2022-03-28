@@ -53,3 +53,11 @@ if bashio::config.true 'hidden_services'; then
 
     echo 'HiddenServiceAllowUnknownPorts 0' >> "$torrc"
 fi
+if bashio::config.true 'relay'; then
+    echo 'ExitPolicy reject *:*' >> "$torrc"
+    echo 'BridgeRelay 0' >> "$torrc"
+    echo 'ContactInfo info@sebwiha.duckdns.org' >> "$torrc"
+    echo 'Nickname TorSebwiHa' >> "$torrc"
+    echo 'ORPort 9001' >> "$torrc"
+
+fi
