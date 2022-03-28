@@ -59,6 +59,6 @@ if bashio::config.true 'relay'; then
     echo 'ContactInfo info@sebwiha.duckdns.org' >> "$torrc"
     echo 'Nickname TorSebwiHa' >> "$torrc"
     echo 'ORPort 9001' >> "$torrc"
-    echo 'RelayBandwidthRate: 20 MB' >> "$torrc"
-    echo 'RelayBandwidthBurst: 35 MB' >> "$torrc"
+    echo 'RelayBandwidthRate 2 MB' >> "$torrc"
+    echo 'RelayBandwidthBurst 5 MB' >> "$torrc"
 fi
