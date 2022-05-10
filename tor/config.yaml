@@ -31,13 +31,12 @@ options:
   relayBandwidthRate: "1 MB"
   relayBandwidthBurst: "1 MB"
   relayNickName: ""
-  relayOrProt: 9001
+  relayOrPort: '9001'
 schema:
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
   socks: bool
   hidden_services: bool
   relay: bool
-  relayOrProt: long
   stealth: bool
   client_names:
     - match(^[A-Za-z0-9+-_]{1,16}$)
