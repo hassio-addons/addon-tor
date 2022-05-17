@@ -55,9 +55,10 @@ if bashio::config.true 'hidden_services'; then
 fi
 if bashio::config.true 'relay'; then
     bashio::log.info "OrPort: "$(bashio::config 'relayOrPort')
-    echo 'ExitPolicy reject *:*' >> "$torrc"
+    bashio::log.info "OrPort: "$(bashio::config 'exitPolicy')
+    echo 'ExitPolicy' "$(bashio::config 'exitPolicy')" >> "$torrc"
     echo 'BridgeRelay 0' >> "$torrc"
-    echo 'ContactInfo info@sebwiha.duckdns.org' >> "$torrc"
+    echo 'ContactInfo ' $(bashio::config 'contactInfo') >> "$torrc"
     echo 'Nickname ' "$(bashio::config 'relayNickName')"  >> "$torrc"
     echo 'ORPort ' $(bashio::config 'relayOrPort') >> "$torrc"
     echo 'RelayBandwidthRate '$(bashio::config 'relayBandwidthRate') >> "$torrc"
