@@ -28,8 +28,8 @@ options:
   ports:
     - "8123"
   relay: false
-  relayBandwidthRate: "1 MB"
-  relayBandwidthBurst: "1 MB"
+  relayBandwidthRate: 
+  relayBandwidthBurst: 
   relayNickName: ""
   relayOrPort: 
 schema:
