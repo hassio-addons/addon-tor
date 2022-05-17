@@ -28,8 +28,8 @@ options:
   ports:
     - "8123"
   relay: false
-  relayBandwidthRate: "1 MB"
-  relayBandwidthBurst: "1 MB"
+  relayBandwidthRate: 
+  relayBandwidthBurst: 
   relayNickName: ""
   relayOrPort: 
 schema:
@@ -38,11 +38,11 @@ schema:
   hidden_services: bool
   relay: bool
   stealth: bool
-  relayBandwidthRate: string
-  relayBandwidthBurst: string
-  relayOrPort: string
+  relayBandwidthRate: str
+  relayBandwidthBurst: str
+  relayOrPort: port
   client_names:
     - match(^[A-Za-z0-9+-_]{1,16}$)
-  relayNickName: string
+  relayNickName: str
   ports:
     - match(^(.*:)?(?:[0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])?$)
