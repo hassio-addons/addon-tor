@@ -54,8 +54,6 @@ if bashio::config.true 'hidden_services'; then
     echo 'HiddenServiceAllowUnknownPorts 0' >> "$torrc"
 fi
 if bashio::config.true 'relay'; then
-    bashio::log.info "OrPort: "$(bashio::config 'relayOrPort')
-    bashio::log.info "OrPort: "$(bashio::config 'exitPolicy')
     echo 'ExitPolicy' "$(bashio::config 'exitPolicy')" >> "$torrc"
     echo 'BridgeRelay 0' >> "$torrc"
     echo 'ContactInfo ' $(bashio::config 'contactInfo') >> "$torrc"
