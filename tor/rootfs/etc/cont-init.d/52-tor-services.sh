@@ -3,18 +3,23 @@
 # Home Assistant Community Add-on: Tor
 # Configures the hidden services
 # ==============================================================================
-declare virtual_port
-declare target_port
-declare port
-declare host
 declare clientname
+declare host
+declare port
+declare key
+declare private_key
+declare public_key
+declare target_port
+declare virtual_port
 
-readonly torrc='/etc/tor/torrc'
 readonly hidden_service_dir='/ssl/tor/hidden_service'
+readonly authorized_clients_dir="${hidden_service_dir}/authorized_clients"
+readonly clients_dir="${hidden_service_dir}/clients"
+readonly torrc='/etc/tor/torrc'
 
 
 if bashio::config.true 'hidden_services'; then
-    echo "HiddenServiceDir $hidden_service_dir" >> "$torrc"
+    echo "HiddenServiceDir ${hidden_service_dir}" >> "$torrc"
     
     for port in $(bashio::config 'ports'); do
         count=$(echo "${port}" | sed 's/[^:]//g'| awk '{ print length }')
@@ -51,39 +56,58 @@ if bashio::config.true 'hidden_services'; then
         # Following the documentation at:
         # https://community.torproject.org/onion-services/advanced/client-auth/
         while read -r clientname; do
-            # Generate a private key
-            # Only if client is a new one 
-            if [ ! -f $hidden_service_dir/authorized_clients/${clientname}.auth ]
+            # Generate key is they do not exist yet
+            if ! bashio::fs.file_exists "${authorized_clients_dir}/${clientname}.auth"
             then 
-                openssl genpkey -algorithm x25519 -out /tmp/k1.prv.pem
-                # Format keys into base32, removing spaces.
-                # Using `sed` to prepare the string so we don't need
-                # the external tool (base64pem from basez) suggested
-                # in the documentation.
-                # Private key
-                cat /tmp/k1.prv.pem \
-                    | sed -e '/----.*PRIVATE KEY----\|^[[:space:]]*$/d' \
-                    | base64 -d \
-                    | tail -c 32 \
-                    | base32 \
-                    | sed 's/=//g' > /tmp/k1.prv.key
+                key=$(openssl genpkey -algorithm x25519)
+
+                private_key=$(
+                    sed \
+                        -e '/----.*PRIVATE KEY----\|^[[:space:]]*$/d' \
+                        <<< "${key}" \
+                        | base64 -d \
+                        | tail -c 32 \
+                        | base32 \
+                        | sed 's/=//g'
+                )
+
                 # Public
-                openssl pkey -in /tmp/k1.prv.pem -pubout \
+                public_key=$(
+                    openssl pkey -pubout \
+                    <<< "${key}" \
                     | sed -e '/----.*PUBLIC KEY----\|^[[:space:]]*$/d' \
                     | base64 -d \
                     | tail -c 32 \
                     | base32 \
-                    | sed 's/=//g' > /tmp/k1.pub.key
+                    | sed 's/=//g'
+                )
+
                 # Create authorized client file
-                echo "descriptor:x25519:`cat /tmp/k1.pub.key`" \
-                    > $hidden_service_dir/authorized_clients/${clientname}.auth
-                bashio::log.info "Private key for ${clientname}: `cat /tmp/k1.prv.key`"
-                # Delete the keys, as we don't need them anymore
-                rm /tmp/k1.prv.pem
-                rm /tmp/k1.prv.key
-                rm /tmp/k1.pub.key
+                echo "descriptor:x25519:${public_key}" \
+                    > "${clients_dir}/${clientname}.auth"
+                echo "descriptor:x25519:${public_key}" \
+                    > "${authorized_clients_dir}/${clientname}.auth"
+
+                # Create private key file
+                echo "descriptor:x25519:${public_key}" \
+                    > "${clients_dir}/${clientname}.auth_private"
+
+                bashio::log.red
+                bashio::log.red
+                bashio::log.red "Created keys for ${clientname}!"
+                bashio::log.red
+                bashio::log.red "Keys are stored in:"
+                bashio::log.red "${clients_dir}"
+                bashio::log.red
+                bashio::log.red "Public key":
+                bashio::log.red "${public_key}"
+                bashio::log.red
+                bashio::log.red "Private key:"
+                bashio::log.red "${private_key}"
+                bashio::log.red
+                bashio::log.red 
             else
-                bashio::log.info "Private key for ${clientname} already given"
+                bashio::log.info "Keys for ${clientname} already exists; skipping..."
             fi
         done <<< "$(bashio::config 'client_names')"
     fi
