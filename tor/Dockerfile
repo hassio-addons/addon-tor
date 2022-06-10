@@ -8,10 +8,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Copy root filesystem
 COPY rootfs /
 
-# Install tor, openssl for private key
-# generation and coreutils for base64/base32
-# commands
-RUN apk add --no-cache \
+# Setup base
+RUN \
+    apk add --no-cache \
         tor=0.4.7.7-r1 \
         openssl=1.1.1m-r1 \
         coreutils=9.0-r2
