@@ -11,9 +11,9 @@ COPY rootfs /
 # Setup base
 RUN \
     apk add --no-cache \
-        tor=0.4.7.7-r1 \
-        openssl=1.1.1m-r1 \
-        coreutils=9.0-r2
+        coreutils=9.1-r0 \
+        openssl=1.1.1o-r0 \
+        tor=0.4.7.7-r1
 
 # Build arguments
 ARG BUILD_ARCH
