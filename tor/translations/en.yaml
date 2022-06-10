@@ -7,8 +7,8 @@ configuration:
   socks:
     name: SOCKS proxy
     description: >-
-       Enabling this feature allows you to use other applications on your
-       network to use the Tor network using this add-on as the SOCKS Proxy.
+      Enabling this feature allows you to use other applications on your
+      network to use the Tor network using this add-on as the SOCKS Proxy.
   hidden_services:
     name: Tor's hidden service
     description: >-
