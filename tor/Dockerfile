@@ -13,7 +13,7 @@ RUN \
     apk add --no-cache \
         coreutils=9.1-r0 \
         openssl=1.1.1q-r0 \
-        tor=0.4.7.8-r0
+        tor=0.4.7.10-r0
 
 # Build arguments
 ARG BUILD_ARCH
