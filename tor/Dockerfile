@@ -15,6 +15,17 @@ RUN \
         openssl=3.0.7-r0 \
         tor=0.4.7.12-r0
 
+HEALTHCHECK \
+    --start-period=5m \
+    --interval=60s \
+    --timeout=30s \
+    CMD curl \
+        --silent \
+        --location \
+        --socks5-hostname localhost:9050 \
+        https://check.torproject.org/?lang=en_US \
+        | grep -qm1 Congratulations
+
 # Build arguments
 ARG BUILD_ARCH
 ARG BUILD_DATE
