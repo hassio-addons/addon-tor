@@ -86,7 +86,7 @@ fi
 if bashio::config.true 'socks'; then
     echo 'SOCKSPort 0.0.0.0:9050' >> "${torrc}"
 else
-    echo 'SOCKSPort 0' >> "${torrc}"
+    echo 'SOCKSPort 127.0.0.1:9050' >> "${torrc}"
 fi
 
 # Configure hidden services
