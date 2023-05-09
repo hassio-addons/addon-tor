@@ -27,6 +27,7 @@ options:
   ports:
     - "8123"
     - "8123:80"
+  bridges: []
 schema:
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
   socks: bool
