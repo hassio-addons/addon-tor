@@ -211,3 +211,13 @@ then
 
     echo 'HiddenServiceAllowUnknownPorts 0' >> "${torrc}"
 fi
+
+# Configure bridges
+if bashio::config.has_value 'bridges';
+then
+    echo 'UseBridges 1' >> "${torrc}"
+    echo 'ClientTransportPlugin obfs4 exec /usr/bin/obfs4proxy managed' >> "${torrc}"
+    while read -r bridge; do
+        echo "Bridge obfs4 ${bridge}" >> "${torrc}"
+    done <<< "$(bashio::config 'bridges')"
+fi
