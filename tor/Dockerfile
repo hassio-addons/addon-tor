@@ -16,27 +16,27 @@ RUN \
         tor=0.4.7.13-r1
 
 # Install Go for building obfs4proxy.
-RUN apk add go git ca-certificates
+RUN apk add go git ca-certificates libcap
 RUN mkdir -p /go/src /go/bin
 RUN chmod -R 644 /go
 ENV GOPATH /go
 ENV PATH /go/bin:$PATH
 WORKDIR /go
 
-# Install tor and obfs4proxy with the ability to bind on low ports.
-RUN apk add libcap
-RUN apk add tor --update-cache --repository http://dl-4.alpinelinux.org/alpine/edge/community
-
 # Remove cache to reduce image size.
 RUN rm -rf /var/cache/apk/*
 
 # Install obfs4proxy
-RUN go get git.torproject.org/pluggable-transports/obfs4.git/obfs4proxy
-RUN mv /go/bin/obfs4proxy /usr/local/bin/obfs4proxy
+RUN git clone https://github.com/Yawning/obfs4.git
+WORKDIR /go/obfs4/
+RUN go build -o obfs4proxy/obfs4proxy ./obfs4proxy
+RUN mv obfs4proxy/obfs4proxy /usr/local/bin/obfs4proxy
 
 # Give obfs4proxy the capability to bind port 80. This line isn't necessary if
 # you use a high (unprivileged) port.
 RUN setcap 'cap_net_bind_service=+ep' /usr/local/bin/obfs4proxy
+
+WORKDIR /
 
 HEALTHCHECK \
     --start-period=5m \

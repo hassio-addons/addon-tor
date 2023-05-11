@@ -125,6 +125,21 @@ if bashio::config.true 'hidden_services'; then
     done
 fi
 
+# Configure bridges
+if bashio::config.exists 'bridges';
+then
+    echo "UseBridges 1" >> "${torrc}"
+    echo 'ClientTransportPlugin obfs4 exec /usr/local/bin/obfs4proxy managed' >> "${torrc}"
+
+    bashio::log.info 'Setup obfs4 bridges:'
+    while read -r bridge; do
+        bashio::log.info "Bridge ${bridge}"
+        echo "Bridge ${bridge}" >> "${torrc}"
+    done <<< "$(bashio::config 'bridges')"
+else
+    bashio::log.info 'obfs4 bridges disabled'
+fi
+
 # Figure out the address
 if bashio::config.true 'hidden_services'; then
     bashio::log.info 'Starting Tor temporarly...'
@@ -210,14 +225,4 @@ then
     done <<< "$(bashio::config 'client_names')"
 
     echo 'HiddenServiceAllowUnknownPorts 0' >> "${torrc}"
-fi
-
-# Configure bridges
-if bashio::config.has_value 'bridges';
-then
-    echo 'UseBridges 1' >> "${torrc}"
-    echo 'ClientTransportPlugin obfs4 exec /usr/bin/obfs4proxy managed' >> "${torrc}"
-    while read -r bridge; do
-        echo "Bridge obfs4 ${bridge}" >> "${torrc}"
-    done <<< "$(bashio::config 'bridges')"
 fi

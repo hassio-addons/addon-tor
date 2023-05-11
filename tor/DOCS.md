@@ -51,6 +51,7 @@ client_names:
   - haremote2
 ports:
   - 8123
+bridges: []
 ```
 
 **Note**: _This is just an example, don't copy and past it! Create your own!_
@@ -149,6 +150,25 @@ The accepted syntaxs of this configuration is:
 
 If you do not define a published port, the local port will be used.
 If you do not define a hostname or IP adress `homeassistant` will be used.
+
+### Option: `bridges`
+
+> The addon supports `obfs4` bridge only
+
+Bridges are Tor relays that help you circumvent censorship.
+
+Because bridge addresses are not public, you will need to request them yourself. You have a few options:
+
+* Visit https://bridges.torproject.org/ and follow the instructions, or
+* Email bridges@torproject.org from a Gmail, or Riseup email address
+* Send a message to @GetBridgesBot on Telegram. Tap on 'Start' or write /start or /bridges in the chat.
+
+For example:
+
+```yaml
+bridges:
+  - "obfs4 123.45.67.89:443 EFC6A00EE6272355C023862378AC77F935F091E4 cert=KkdWiWlfetJG9SFrzX8g1teBbgxtsc0zPiN5VLxqNNH+iudVW48CoH/XVXPQntbivXIqZA iat-mode=0"
+```
 
 ## Tor client access setup
 
