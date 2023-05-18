@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:13.2.2
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.0.0
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -11,9 +11,9 @@ COPY rootfs /
 # Setup base
 RUN \
     apk add --no-cache \
-        coreutils=9.1-r0 \
-        openssl=3.0.8-r4 \
-        tor=0.4.7.13-r1
+        coreutils=9.3-r1 \
+        openssl=3.1.0-r4 \
+        tor=0.4.7.13-r2
 
 # Install Go for building obfs4proxy.
 RUN apk add go git ca-certificates libcap
