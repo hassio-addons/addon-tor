@@ -159,7 +159,7 @@ Bridges are Tor relays that help you circumvent censorship.
 
 Because bridge addresses are not public, you will need to request them yourself. You have a few options:
 
-* Visit https://bridges.torproject.org/ and follow the instructions, or
+* Visit [Tor][tor-bridges-obfs4] and follow the instructions, or
 * Email bridges@torproject.org from a Gmail, or Riseup email address
 * Send a message to @GetBridgesBot on Telegram. Tap on 'Start' or write /start or /bridges in the chat.
 
@@ -281,3 +281,4 @@ SOFTWARE.
 [releases]: https://github.com/hassio-addons/addon-tor/releases
 [semver]: http://semver.org/spec/v2.0.0.htm
 [tor-hidden-service]: https://www.torproject.org/docs/hidden-services.html.en
+[tor-bridges-obfs4]: https://bridges.torproject.org/bridges/?transport=obfs4
