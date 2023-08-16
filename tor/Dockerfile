@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.0.0
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.1.0
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -12,7 +12,7 @@ COPY rootfs /
 RUN \
     apk add --no-cache \
         coreutils=9.3-r1 \
-        openssl=3.1.0-r4 \
+        openssl=3.1.2-r0 \
         tor=0.4.7.13-r2
 
 # Install Go for building obfs4proxy.
