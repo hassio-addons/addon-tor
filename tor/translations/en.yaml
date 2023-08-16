@@ -33,6 +33,9 @@ configuration:
   bridges:
     name: Bridges
     description: >-
-      Configures bridges gotten via [https://bridges.torproject.org](https://bridges.torproject.org/bridges/?transport=obfs4)
+      Configures bridges gotten via
+      [1](https://bridges.torproject.org/bridges/?transport=obfs4)
+      2 <https://bridges.torproject.org/bridges/?transport=obfs4>
+      3 &lt;a href=&quot;https://bridges.torproject.org/bridges/?transport=obfs4&quot;&gt;bridges.torproject.org&lt;/a&gt;
 network:
   9050/tcp: Tor SOCKS proxy port
