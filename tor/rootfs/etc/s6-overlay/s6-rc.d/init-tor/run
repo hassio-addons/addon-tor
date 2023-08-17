@@ -126,18 +126,37 @@ if bashio::config.true 'hidden_services'; then
 fi
 
 # Configure bridges
-if bashio::config.exists 'bridges';
+if bashio::config.exists 'bridges' \
+    && ! bashio::config.is_empty 'bridges';
 then
+    bashio::log.info 'Use bridges:'
     echo "UseBridges 1" >> "${torrc}"
-    echo 'ClientTransportPlugin obfs4 exec /usr/local/bin/obfs4proxy managed' >> "${torrc}"
 
-    bashio::log.info 'Setup obfs4 bridges:'
+    # Add client for OBFS transport
+    echo "ClientTransportPlugin obfs2,obfs3,obfs4,scramblesuit exec /usr/local/bin/obfs4proxy managed" >> "${torrc}"
+    
+    # Add client for Snowflake transport
+    snowflake_plugin_conf="ClientTransportPlugin snowflake exec /usr/local/bin/snowflake"
+    if bashio::config.exists 'snowflake_url';
+    then
+        snowflake_plugin_conf+=" -url $(bashio::config 'snowflake_url')"
+    fi
+    if bashio::config.exists 'snowflake_front';
+    then
+        snowflake_plugin_conf+=" -front $(bashio::config 'snowflake_front')"
+    fi
+    if bashio::config.exists 'snowflake_ice'\
+        && ! bashio::config.is_empty 'snowflake_ice';
+    then
+        snowflake_plugin_conf+=" -ice `echo $(bashio::config 'snowflake_ice') | tr ' ' ','`"
+    fi
+    echo "$snowflake_plugin_conf" >> "${torrc}"
+    
+    # Add bridges
     while read -r bridge; do
         bashio::log.info "Bridge ${bridge}"
         echo "Bridge ${bridge}" >> "${torrc}"
     done <<< "$(bashio::config 'bridges')"
-else
-    bashio::log.info 'obfs4 bridges disabled'
 fi
 
 # Figure out the address

@@ -21,16 +21,20 @@ RUN mkdir -p /go/src /go/bin
 RUN chmod -R 644 /go
 ENV GOPATH /go
 ENV PATH /go/bin:$PATH
-WORKDIR /go
 
 # Remove cache to reduce image size.
 RUN rm -rf /var/cache/apk/*
 
 # Install obfs4proxy
-RUN git clone https://github.com/Yawning/obfs4.git
+RUN git clone https://github.com/Yawning/obfs4.git /go/obfs4/
 WORKDIR /go/obfs4/
-RUN go build -o obfs4proxy/obfs4proxy ./obfs4proxy
-RUN mv obfs4proxy/obfs4proxy /usr/local/bin/obfs4proxy
+RUN go build -o /usr/local/bin/obfs4proxy ./obfs4proxy
+
+# Install snowflake
+RUN git clone https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git /go/snowflake/
+WORKDIR /go/snowflake/client/
+RUN go get
+RUN go build -o /usr/local/bin/snowflake
 
 # Give obfs4proxy the capability to bind port 80. This line isn't necessary if
 # you use a high (unprivileged) port.

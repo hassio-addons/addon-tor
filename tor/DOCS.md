@@ -151,11 +151,30 @@ The accepted syntaxs of this configuration is:
 If you do not define a published port, the local port will be used.
 If you do not define a hostname or IP adress `homeassistant` will be used.
 
+### Option: `snowflake_url`
+
+URL of signaling broker for snowflake client
+
+### Option: `snowflake_front`
+
+Front domain for snowflake client
+
+### Option: `snowflake_ice`
+
+List of ICE servers for snowflake client
+
 ### Option: `bridges`
 
-> The addon supports `obfs4` bridge only
+> Keep the option value clean to avoid using of any transport plugins and bridges.
 
 Bridges are Tor relays that help you circumvent censorship.
+Access to bridges is provided by supported transport plugins:
+
+#### Snowflake
+
+Look [here][what-is-snowflake] about 
+
+#### OBFS
 
 Because bridge addresses are not public, you will need to request them yourself. You have a few options:
 
@@ -282,3 +301,4 @@ SOFTWARE.
 [semver]: http://semver.org/spec/v2.0.0.htm
 [tor-hidden-service]: https://www.torproject.org/docs/hidden-services.html.en
 [tor-bridges-obfs4]: https://bridges.torproject.org/bridges/?transport=obfs4
+[what-is-snowflake]: https://support.torproject.org/censorship/what-is-snowflake/
