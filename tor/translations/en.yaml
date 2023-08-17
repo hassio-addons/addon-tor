@@ -30,6 +30,15 @@ configuration:
     description: >-
       Configures hosts and ports to publish via a Tor Hidden Service. Check
       the add-on documentation for the exact format to enter here.
+  snowflake_url:
+    name: Snowflake URL
+    description: URL of signaling broker
+  snowflake_front:
+    name: Snowflake front
+    description: Front domain
+  snowflake_ice: 
+    name: Snowflake ICE
+    description: List of ICE servers
   bridges:
     name: Bridges
     description: >-
