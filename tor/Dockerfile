@@ -13,7 +13,7 @@ RUN \
     apk add --no-cache \
         coreutils=9.3-r1 \
         openssl=3.1.2-r0 \
-        tor=0.4.7.13-r2
+        tor=0.4.8.4-r0
 
 # Install Go for building obfs4proxy.
 RUN apk add go git ca-certificates libcap
