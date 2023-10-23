@@ -27,7 +27,6 @@ options:
   ports:
     - "8123"
     - "8123:80"
-  snowflake_ice: []
   bridges: []
 schema:
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
@@ -38,9 +37,5 @@ schema:
     - match(^[A-Za-z0-9+-_]{1,16}$)
   ports:
     - match(^(.*:)?(?:[0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])?$)
-  snowflake_url: "url?"
-  snowflake_front: "str?"
-  snowflake_ice: 
-    - str
   bridges:
     - str

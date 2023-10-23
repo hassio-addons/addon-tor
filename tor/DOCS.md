@@ -51,21 +51,7 @@ client_names:
   - haremote2
 ports:
   - 8123
-snowflake_url: https://snowflake-broker.torproject.net.global.prod.fastly.net/
-snowflake_front: cdn.sstatic.net
-snowflake_ice:
-  - stun:stun.voip.blackberry.com:3478
-  - stun:stun.antisip.com:3478
-  - stun:stun.bluesip.net:3478
-  - stun:stun.dus.net:3478
-  - stun:stun.epygi.com:3478
-  - stun:stun.sonetel.com:3478
-  - stun:stun.sonetel.net:3478
-  - stun:stun.uls.co.za:3478
-  - stun:stun.voipgate.com:3478
-  - stun:stun.voys.nl:3478
-bridges:
-  - snowflake 192.0.2.4:80 8838024498816A039FCBBAB14E6F40A0843051FA
+bridges: []
 ```
 
 **Note**: _This is just an example, don't copy and past it! Create your own!_
@@ -165,18 +151,6 @@ The accepted syntaxs of this configuration is:
 If you do not define a published port, the local port will be used.
 If you do not define a hostname or IP adress `homeassistant` will be used.
 
-### Option: `snowflake_url`
-
-URL of signaling broker for snowflake client
-
-### Option: `snowflake_front`
-
-Front domain for snowflake client
-
-### Option: `snowflake_ice`
-
-List of ICE servers for snowflake client
-
 ### Option: `bridges`
 
 > Keep the option value clean to avoid using of any transport plugins and bridges.
@@ -186,7 +160,12 @@ Access to bridges is provided by supported transport plugins:
 
 #### Snowflake
 
-Look [here][what-is-snowflake] about 
+What is [snowflake][what-is-snowflake], example:
+
+```yaml
+bridges:
+  - snowflake 192.0.2.3:80 2B280B23E1107BB62ABFC40DDCC8824814F80A72 fingerprint=2B280B23E1107BB62ABFC40DDCC8824814F80A72 url=https://snowflake-broker.torproject.net.global.prod.fastly.net/ front=foursquare.com ice=stun:stun.l.google.com:19302,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478 utls-imitate=hellorandomizedalpn
+```
 
 #### OBFS
 

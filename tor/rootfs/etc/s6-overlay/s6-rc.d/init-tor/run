@@ -136,21 +136,7 @@ then
     echo "ClientTransportPlugin obfs2,obfs3,obfs4,scramblesuit exec /usr/local/bin/obfs4proxy managed" >> "${torrc}"
     
     # Add client for Snowflake transport
-    snowflake_plugin_conf="ClientTransportPlugin snowflake exec /usr/local/bin/snowflake"
-    if bashio::config.exists 'snowflake_url';
-    then
-        snowflake_plugin_conf+=" -url $(bashio::config 'snowflake_url')"
-    fi
-    if bashio::config.exists 'snowflake_front';
-    then
-        snowflake_plugin_conf+=" -front $(bashio::config 'snowflake_front')"
-    fi
-    if bashio::config.exists 'snowflake_ice'\
-        && ! bashio::config.is_empty 'snowflake_ice';
-    then
-        snowflake_plugin_conf+=" -ice `echo $(bashio::config 'snowflake_ice') | tr ' ' ','`"
-    fi
-    echo "$snowflake_plugin_conf" >> "${torrc}"
+    echo "ClientTransportPlugin snowflake exec /usr/local/bin/snowflake" >> "${torrc}"
     
     # Add bridges
     while read -r bridge; do
