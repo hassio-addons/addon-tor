@@ -15,23 +15,24 @@ RUN \
         openssl=3.1.3-r0 \
         tor=0.4.8.7-r0
 
-# Install Go for building obfs4proxy.
-RUN apk add go git ca-certificates libcap
+# Install Go for building bridge transports clients.
+RUN apk add --no-cache \
+    go \
+    git \
+    ca-certificates \
+    libcap
 RUN mkdir -p /go/src /go/bin
 RUN chmod -R 644 /go
 ENV GOPATH /go
 ENV PATH /go/bin:$PATH
 
-# Remove cache to reduce image size.
-RUN rm -rf /var/cache/apk/*
-
-# Install obfs4proxy
+# Install obfs4proxy transport client
 RUN git clone https://github.com/Yawning/obfs4.git /go/obfs4/
 WORKDIR /go/obfs4/
 RUN go build -o /usr/local/bin/obfs4proxy ./obfs4proxy
 
-# Install snowflake
-RUN git clone https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git /go/snowflake/
+# Install snowflake transport client
+RUN git clone --branch v2.6.1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git /go/snowflake/
 WORKDIR /go/snowflake/client/
 RUN go get
 RUN go build -o /usr/local/bin/snowflake
