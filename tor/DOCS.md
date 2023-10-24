@@ -158,22 +158,6 @@ If you do not define a hostname or IP adress `homeassistant` will be used.
 Bridges are Tor relays that help you circumvent censorship.
 Access to bridges is provided by supported transport plugins:
 
-#### Snowflake
-
-What is [snowflake][what-is-snowflake], example:
-
-```yaml
-bridges:
-  - >-
-    snowflake 192.0.2.3:80 2B280B23E1107BB62ABFC40DDCC8824814F80A72
-    fingerprint=2B280B23E1107BB62ABFC40DDCC8824814F80A72
-    url=https://snowflake-broker.torproject.net/
-    ampcache=https://cdn.ampproject.org/
-    front=www.google.com
-    ice=stun:stun.l.google.com:19302,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478
-    utls-imitate=hellorandomizedalpn
-```
-
 #### OBFS
 
 Because bridge addresses are not public, you will need to request them yourself. You have a few options:
@@ -190,6 +174,37 @@ bridges:
     obfs4 123.45.67.89:443 EFC6A00EE6272355C023862378AC77F935F091E4
     cert=KkdWiWlfetJG9SFrzX8g1teBbgxtsc0zPiN5VLxqNNH+iudVW48CoH/XVXPQntbivXIqZA
     iat-mode=0
+```
+
+#### Webtunnel
+
+Visit [Tor][tor-bridges-webtunnel] project and follow the instructions
+
+For example:
+
+```yaml
+bridges:
+  - >-
+    webtunnel 192.0.2.3:1
+    DEADBEEFDEADBEEFDEADBEEFDEADBEEFDEADBEEF
+    url=https://akbwadp9lc5fyyz0cj4d76z643pxgbfh6oyc-167-71-71-157.sslip.io/5m9yq0j4ghkz0fz7qmuw58cvbjon0ebnrsp0
+    ver=0.0.1
+```
+
+#### Snowflake
+
+What is [snowflake][what-is-snowflake], example:
+
+```yaml
+bridges:
+  - >-
+    snowflake 192.0.2.3:80 2B280B23E1107BB62ABFC40DDCC8824814F80A72
+    fingerprint=2B280B23E1107BB62ABFC40DDCC8824814F80A72
+    url=https://snowflake-broker.torproject.net/
+    ampcache=https://cdn.ampproject.org/
+    front=www.google.com
+    ice=stun:stun.l.google.com:19302,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478
+    utls-imitate=hellorandomizedalpn
 ```
 
 ## Tor client access setup
@@ -304,4 +319,5 @@ SOFTWARE.
 [semver]: http://semver.org/spec/v2.0.0.htm
 [tor-hidden-service]: https://www.torproject.org/docs/hidden-services.html.en
 [tor-bridges-obfs4]: https://bridges.torproject.org/bridges/?transport=obfs4
+[tor-bridges-webtunnel]: https://bridges.torproject.org/bridges/?transport=webtunnel
 [what-is-snowflake]: https://support.torproject.org/censorship/what-is-snowflake/

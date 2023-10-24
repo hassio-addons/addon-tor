@@ -12,19 +12,14 @@ COPY rootfs /
 RUN \
     apk add --no-cache \
         coreutils=9.3-r1 \
-        openssl=3.1.3-r0 \
-        tor=0.4.8.7-r0
-
-# Install Go for building bridge transports clients.
-RUN apk add --no-cache \
-    go \
-    git \
-    ca-certificates \
-    libcap
-RUN mkdir -p /go/src /go/bin
-RUN chmod -R 644 /go
-ENV GOPATH /go
-ENV PATH /go/bin:$PATH
+        openssl=3.1.4-r0 \
+        libcrypto3=3.1.4-r0 \
+        libssl3=3.1.4-r0 \
+        tor=0.4.8.7-r0 \
+        go=1.20.10-r0 \
+        git=2.40.1-r0 \
+        ca-certificates=20230506-r0 \
+        libcap=2.69-r0
 
 # Install obfs4proxy transport client
 RUN git clone https://github.com/Yawning/obfs4.git /go/obfs4/
@@ -37,11 +32,17 @@ WORKDIR /go/snowflake/client/
 RUN go get
 RUN go build -o /usr/local/bin/snowflake
 
+# Install webtunnel client
+RUN git clone https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel.git /go/webtunnel/
+WORKDIR /go/webtunnel/main/client/
+RUN go build -ldflags="-s -w" -o /usr/local/bin/webtunnel
+
 # Give tranposrts clients the capability to bind port 80. This line isn't necessary if
 # you use a high (unprivileged) port.
 RUN setcap \
     'cap_net_bind_service=+ep' /usr/local/bin/obfs4proxy \
-    'cap_net_bind_service=+ep' /usr/local/bin/snowflake
+    'cap_net_bind_service=+ep' /usr/local/bin/snowflake \
+    'cap_net_bind_service=+ep' /usr/local/bin/webtunnel 
 
 WORKDIR /
 

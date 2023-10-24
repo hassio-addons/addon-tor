@@ -137,6 +137,9 @@ then
     
     # Add client for Snowflake transport
     echo "ClientTransportPlugin snowflake exec /usr/local/bin/snowflake" >> "${torrc}"
+
+    # Add client for WebTunnel transport
+    echo "ClientTransportPlugin webtunnel exec /usr/local/bin/webtunnel" >> "${torrc}"
     
     # Add bridges
     while read -r bridge; do
