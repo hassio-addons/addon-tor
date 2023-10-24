@@ -164,7 +164,14 @@ What is [snowflake][what-is-snowflake], example:
 
 ```yaml
 bridges:
-  - snowflake 192.0.2.3:80 2B280B23E1107BB62ABFC40DDCC8824814F80A72 fingerprint=2B280B23E1107BB62ABFC40DDCC8824814F80A72 url=https://snowflake-broker.torproject.net.global.prod.fastly.net/ front=foursquare.com ice=stun:stun.l.google.com:19302,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478 utls-imitate=hellorandomizedalpn
+  - >-
+    snowflake 192.0.2.3:80 2B280B23E1107BB62ABFC40DDCC8824814F80A72
+    fingerprint=2B280B23E1107BB62ABFC40DDCC8824814F80A72
+    url=https://snowflake-broker.torproject.net/
+    ampcache=https://cdn.ampproject.org/
+    front=www.google.com
+    ice=stun:stun.l.google.com:19302,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478
+    utls-imitate=hellorandomizedalpn
 ```
 
 #### OBFS
@@ -179,7 +186,10 @@ For example:
 
 ```yaml
 bridges:
-  - "obfs4 123.45.67.89:443 EFC6A00EE6272355C023862378AC77F935F091E4 cert=KkdWiWlfetJG9SFrzX8g1teBbgxtsc0zPiN5VLxqNNH+iudVW48CoH/XVXPQntbivXIqZA iat-mode=0"
+  - >-
+    obfs4 123.45.67.89:443 EFC6A00EE6272355C023862378AC77F935F091E4
+    cert=KkdWiWlfetJG9SFrzX8g1teBbgxtsc0zPiN5VLxqNNH+iudVW48CoH/XVXPQntbivXIqZA
+    iat-mode=0
 ```
 
 ## Tor client access setup

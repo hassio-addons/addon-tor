@@ -37,9 +37,11 @@ WORKDIR /go/snowflake/client/
 RUN go get
 RUN go build -o /usr/local/bin/snowflake
 
-# Give obfs4proxy the capability to bind port 80. This line isn't necessary if
+# Give tranposrts clients the capability to bind port 80. This line isn't necessary if
 # you use a high (unprivileged) port.
-RUN setcap 'cap_net_bind_service=+ep' /usr/local/bin/obfs4proxy
+RUN setcap \
+    'cap_net_bind_service=+ep' /usr/local/bin/obfs4proxy \
+    'cap_net_bind_service=+ep' /usr/local/bin/snowflake
 
 WORKDIR /
 
