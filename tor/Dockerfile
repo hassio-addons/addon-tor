@@ -47,7 +47,7 @@ RUN setcap \
 WORKDIR /
 
 HEALTHCHECK \
-    --start-period=5m \
+    --start-period=60m \
     --interval=60s \
     --timeout=30s \
     CMD curl \
