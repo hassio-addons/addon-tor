@@ -13,27 +13,31 @@ RUN \
     apk add --no-cache \
         coreutils=9.3-r1 \
         openssl=3.1.4-r1 \
-        tor=0.4.8.9-r0 \
-        go=1.20.10-r0 \
+        tor=0.4.8.10-r0 \
+        go=1.20.11-r0 \
         git=2.40.1-r0 \
         ca-certificates=20230506-r0 \
         libcap=2.69-r0
 
-# Install obfs4proxy transport client
-RUN git clone https://github.com/Yawning/obfs4.git /go/obfs4/
-WORKDIR /go/obfs4/
-RUN go build -o /usr/local/bin/obfs4proxy ./obfs4proxy
-
-# Install snowflake transport client
-RUN git clone --branch v2.6.1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git /go/snowflake/
-WORKDIR /go/snowflake/client/
-RUN go get
-RUN go build -o /usr/local/bin/snowflake
-
+ARG OBFS_VERSION=obfs4proxy-0.0.14
+ARG SNOWFLAKE_VERSION=v2.6.1
+ARG WEBTUNNEL_VERSION=ae511e2d67297b8b32fdb173549cac7b9f64f45b
+RUN \
+# Install obfs4proxy
+    git clone -b ${OBFS_VERSION} --single-branch --depth 1 https://github.com/Yawning/obfs4.git /go/obfs4/ \
+    && cd /go/obfs4/ \
+    && go build -o /usr/local/bin/obfs4proxy ./obfs4proxy \
+# Install snowflake
+    && git clone -b ${SNOWFLAKE_VERSION} --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git /go/snowflake/ \
+    && cd /go/snowflake/client/ \
+    && go get \
+    && go build -o /usr/local/bin/snowflake \
 # Install webtunnel client
-RUN git clone https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel.git /go/webtunnel/
-WORKDIR /go/webtunnel/main/client/
-RUN go build -ldflags="-s -w" -o /usr/local/bin/webtunnel
+    && git clone --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel.git /go/webtunnel/ \
+    && cd /go/webtunnel/ \
+    && git reset --hard ${WEBTUNNEL_VERSION} \
+    && cd main/client/ \
+    && go build -ldflags="-s -w" -o /usr/local/bin/webtunnel
 
 # Give tranposrts clients the capability to bind port 80. This line isn't necessary if
 # you use a high (unprivileged) port.
