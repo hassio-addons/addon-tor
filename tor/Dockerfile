@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.3.2
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:15.0.4
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -11,13 +11,13 @@ COPY rootfs /
 # Setup base
 RUN \
     apk add --no-cache \
-        coreutils=9.3-r1 \
-        openssl=3.1.4-r1 \
+        coreutils=9.4-r1 \
+        openssl=3.1.4-r3 \
         tor=0.4.8.10-r0 \
-        go=1.20.11-r0 \
-        git=2.40.1-r0 \
+        go=1.21.5-r0 \
+        git=2.43.0-r0 \
         ca-certificates=20230506-r0 \
-        libcap=2.69-r0
+        libcap=2.69-r1
 
 ARG OBFS_VERSION=obfs4proxy-0.0.14
 ARG SNOWFLAKE_VERSION=v2.6.1
