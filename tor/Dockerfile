@@ -9,6 +9,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 COPY rootfs /
 
 # Setup base
+ARG OBFS_VERSION=obfs4proxy-0.0.14
+ARG SNOWFLAKE_VERSION=v2.6.1
+ARG WEBTUNNEL_VERSION=ae511e2d67297b8b32fdb173549cac7b9f64f45b
 RUN \
     apk add --no-cache \
         coreutils=9.4-r1 \
@@ -17,14 +20,9 @@ RUN \
         go=1.21.5-r0 \
         git=2.43.0-r0 \
         ca-certificates=20230506-r0 \
-        libcap=2.69-r1
-
-ARG OBFS_VERSION=obfs4proxy-0.0.14
-ARG SNOWFLAKE_VERSION=v2.6.1
-ARG WEBTUNNEL_VERSION=ae511e2d67297b8b32fdb173549cac7b9f64f45b
-RUN \
+        libcap=2.69-r1 \
 # Install obfs4proxy
-    git clone -b ${OBFS_VERSION} --single-branch --depth 1 https://github.com/Yawning/obfs4.git /go/obfs4/ \
+    && git clone -b ${OBFS_VERSION} --single-branch --depth 1 https://github.com/Yawning/obfs4.git /go/obfs4/ \
     && cd /go/obfs4/ \
     && go build -o /usr/local/bin/obfs4proxy ./obfs4proxy \
 # Install snowflake
@@ -37,14 +35,12 @@ RUN \
     && cd /go/webtunnel/ \
     && git reset --hard ${WEBTUNNEL_VERSION} \
     && cd main/client/ \
-    && go build -ldflags="-s -w" -o /usr/local/bin/webtunnel
-
-# Give tranposrts clients the capability to bind port 80. This line isn't necessary if
-# you use a high (unprivileged) port.
-RUN setcap \
-    'cap_net_bind_service=+ep' /usr/local/bin/obfs4proxy \
-    'cap_net_bind_service=+ep' /usr/local/bin/snowflake \
-    'cap_net_bind_service=+ep' /usr/local/bin/webtunnel 
+    && go build -ldflags="-s -w" -o /usr/local/bin/webtunnel \
+# Give tranposrts clients the capability to bind privileged port.
+    && setcap \
+        'cap_net_bind_service=+ep' /usr/local/bin/obfs4proxy \
+        'cap_net_bind_service=+ep' /usr/local/bin/snowflake \
+        'cap_net_bind_service=+ep' /usr/local/bin/webtunnel
 
 WORKDIR /
 
