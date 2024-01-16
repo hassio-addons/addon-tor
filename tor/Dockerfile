@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:15.0.4
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:15.0.5
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -15,9 +15,9 @@ ARG WEBTUNNEL_VERSION=ae511e2d67297b8b32fdb173549cac7b9f64f45b
 RUN \
     apk add --no-cache \
         coreutils=9.4-r1 \
-        openssl=3.1.4-r3 \
+        openssl=3.1.4-r4 \
         tor=0.4.8.10-r0 \
-        go=1.21.5-r0 \
+        go=1.21.6-r0 \
         git=2.43.0-r0 \
         ca-certificates=20230506-r0 \
         libcap=2.69-r1 \
