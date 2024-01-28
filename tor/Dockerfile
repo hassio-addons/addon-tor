@@ -11,7 +11,7 @@ COPY rootfs /
 # Setup base
 RUN \
     apk add --no-cache \
-        coreutils=9.4-r1 \
+        coreutils=9.4-r2 \
         openssl=3.1.4-r4 \
         tor=0.4.8.10-r0
 
