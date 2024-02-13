@@ -9,14 +9,43 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 COPY rootfs /
 
 # Setup base
+ARG OBFS_VERSION=obfs4proxy-0.0.14
+ARG SNOWFLAKE_VERSION=v2.6.1
+ARG WEBTUNNEL_VERSION=ae511e2d67297b8b32fdb173549cac7b9f64f45b
 RUN \
     apk add --no-cache \
         coreutils=9.4-r2 \
         openssl=3.1.4-r5 \
-        tor=0.4.8.10-r0
+        tor=0.4.8.10-r0 \
+        go=1.21.6-r0 \
+        git=2.43.0-r0 \
+        ca-certificates=20230506-r0 \
+        libcap=2.69-r1 \
+# Install obfs4proxy
+    && git clone -b ${OBFS_VERSION} --single-branch --depth 1 https://github.com/Yawning/obfs4.git /go/obfs4/ \
+    && cd /go/obfs4/ \
+    && go build -o /usr/local/bin/obfs4proxy ./obfs4proxy \
+# Install snowflake
+    && git clone -b ${SNOWFLAKE_VERSION} --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git /go/snowflake/ \
+    && cd /go/snowflake/client/ \
+    && go get \
+    && go build -o /usr/local/bin/snowflake \
+# Install webtunnel client
+    && git clone --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel.git /go/webtunnel/ \
+    && cd /go/webtunnel/ \
+    && git reset --hard ${WEBTUNNEL_VERSION} \
+    && cd main/client/ \
+    && go build -ldflags="-s -w" -o /usr/local/bin/webtunnel \
+# Give tranposrts clients the capability to bind privileged port.
+    && setcap \
+        'cap_net_bind_service=+ep' /usr/local/bin/obfs4proxy \
+        'cap_net_bind_service=+ep' /usr/local/bin/snowflake \
+        'cap_net_bind_service=+ep' /usr/local/bin/webtunnel
+
+WORKDIR /
 
 HEALTHCHECK \
-    --start-period=5m \
+    --start-period=60m \
     --interval=60s \
     --timeout=30s \
     CMD curl \
