@@ -10,16 +10,16 @@ COPY rootfs /
 
 # Setup base
 ARG OBFS_VERSION=obfs4proxy-0.0.14
-ARG SNOWFLAKE_VERSION=v2.6.1
-ARG WEBTUNNEL_VERSION=ae511e2d67297b8b32fdb173549cac7b9f64f45b
+ARG SNOWFLAKE_VERSION=v2.9.2
+ARG WEBTUNNEL_VERSION=c6e11b4fc27bb36d38a3dd903aaa1c5deb66ff0b
 RUN \
     apk add --no-cache \
         coreutils=9.4-r2 \
         openssl=3.1.4-r6 \
         tor=0.4.8.11-r0 \
-        go=1.21.6-r0 \
+        go=1.21.9-r0 \
         git=2.43.0-r0 \
-        ca-certificates=20230506-r0 \
+        ca-certificates=20240226-r0 \
         libcap=2.69-r1 \
 # Install obfs4proxy
     && git clone -b ${OBFS_VERSION} --single-branch --depth 1 https://github.com/Yawning/obfs4.git /go/obfs4/ \
