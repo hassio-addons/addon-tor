@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:15.0.8
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:15.0.9
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -15,10 +15,10 @@ ARG WEBTUNNEL_VERSION=c6e11b4fc27bb36d38a3dd903aaa1c5deb66ff0b
 RUN \
     apk add --no-cache \
         coreutils=9.4-r2 \
-        openssl=3.1.4-r6 \
+        openssl=3.1.5-r0 \
         tor=0.4.8.11-r0 \
-        go=1.21.9-r0 \
-        git=2.43.0-r0 \
+        go=1.21.10-r0 \
+        git=2.43.4-r0 \
         ca-certificates=20240226-r0 \
         libcap=2.69-r1 \
 # Install obfs4proxy
