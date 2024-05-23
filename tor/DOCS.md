@@ -162,9 +162,9 @@ Access to bridges is provided by supported transport plugins:
 
 Because bridge addresses are not public, you will need to request them yourself. You have a few options:
 
-* Visit [Tor][tor-bridges-obfs4] project and follow the instructions, or
-* Email bridges@torproject.org from a Gmail, or Riseup email address
-* Send a message to @GetBridgesBot on Telegram. Tap on 'Start' or write /start or /bridges in the chat.
+- Visit [Tor][tor-bridges-obfs4] project and follow the instructions, or
+- Email bridges@torproject.org from a Gmail, or Riseup email address
+- Send a message to @GetBridgesBot on Telegram. Tap on 'Start' or write /start or /bridges in the chat.
 
 For example:
 

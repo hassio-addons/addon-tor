@@ -27,9 +27,7 @@
     },
     {
       "fileMatch": ["/Dockerfile$"],
-      "matchStrings": [
-        "ARG OBFS_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s+"
-      ],
+      "matchStrings": ["ARG OBFS_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s+"],
       "versioningTemplate": "loose",
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "Yawning/obfs4"
