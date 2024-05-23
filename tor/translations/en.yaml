@@ -30,5 +30,10 @@ configuration:
     description: >-
       Configures hosts and ports to publish via a Tor Hidden Service. Check
       the add-on documentation for the exact format to enter here.
+  bridges:
+    name: Bridges
+    description: >-
+      Configures bridges to establish connection with Tor Network. Check the 
+      add-on documentation for the exact format to enter here.
 network:
   9050/tcp: Tor SOCKS proxy port
