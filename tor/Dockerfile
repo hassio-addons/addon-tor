@@ -26,18 +26,16 @@ RUN git clone -b ${OBFS_VERSION} --single-branch --depth 1 https://github.com/Ya
 
 # Install snowflake
 ARG SNOWFLAKE_VERSION=v2.9.2
-WORKDIR /go/snowflake
-RUN git clone -b ${SNOWFLAKE_VERSION} --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git . \
-    && cd client \
+WORKDIR /go/snowflake/client
+RUN git clone -b ${SNOWFLAKE_VERSION} --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git /go/snowflake \
     && go get \
     && go build -o /usr/local/bin/snowflake
 
 # Install webtunnel client
 ARG WEBTUNNEL_VERSION=c6e11b4fc27bb36d38a3dd903aaa1c5deb66ff0b
-WORKDIR /go/webtunnel
-RUN git clone --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel.git . \
+WORKDIR /go/webtunnel/main/client
+RUN git clone --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel.git /go/webtunnel \
     && git reset --hard ${WEBTUNNEL_VERSION} \
-    && cd main/client \
     && go build -ldflags="-s -w" -o /usr/local/bin/webtunnel
 
 WORKDIR /
