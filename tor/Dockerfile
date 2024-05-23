@@ -43,7 +43,7 @@ RUN git reset --hard ${WEBTUNNEL_VERSION} \
 
 WORKDIR /
 
-# Give tranposrts clients the capability to bind privileged port.
+# Give transports clients the capability to bind privileged port.
 RUN setcap \
     'cap_net_bind_service=+ep' /usr/local/bin/obfs4proxy \
     'cap_net_bind_service=+ep' /usr/local/bin/snowflake \
