@@ -1,4 +1,7 @@
 ARG BUILD_FROM=ghcr.io/hassio-addons/base:15.0.9
+ARG OBFS_VERSION=obfs4proxy-0.0.14
+ARG SNOWFLAKE_VERSION=v2.9.2
+ARG WEBTUNNEL_VERSION=3b6faa48163782c1e5420bcb4b068cd38c401ea7
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -18,24 +21,24 @@ RUN apk add --no-cache \
         ca-certificates=20240226-r0 \
         libcap=2.69-r1
 
-# Install obfs4proxy
-ARG OBFS_VERSION=obfs4proxy-0.0.14
-WORKDIR /go/obfs4
-RUN git clone -b ${OBFS_VERSION} --single-branch --depth 1 https://github.com/Yawning/obfs4.git . \
-    && go build -o /usr/local/bin/obfs4proxy ./obfs4proxy
+# Download pluggable-transports sources
+WORKDIR /go
+RUN git clone -b ${OBFS_VERSION} --single-branch --depth 1 https://github.com/Yawning/obfs4.git \
+    && git clone -b ${SNOWFLAKE_VERSION} --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git \
+    && git clone --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel.git
 
-# Install snowflake
-ARG SNOWFLAKE_VERSION=v2.9.2
+# Build obfs4proxy
+WORKDIR /go/obfs4
+RUN go build -o /usr/local/bin/obfs4proxy ./obfs4proxy
+
+# Build snowflake
 WORKDIR /go/snowflake/client
-RUN git clone -b ${SNOWFLAKE_VERSION} --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git /go/snowflake \
-    && go get \
+RUN go get \
     && go build -o /usr/local/bin/snowflake
 
-# Install webtunnel client
-ARG WEBTUNNEL_VERSION=c6e11b4fc27bb36d38a3dd903aaa1c5deb66ff0b
+# Build webtunnel
 WORKDIR /go/webtunnel/main/client
-RUN git clone --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel.git /go/webtunnel \
-    && git reset --hard ${WEBTUNNEL_VERSION} \
+RUN git reset --hard ${WEBTUNNEL_VERSION} \
     && go build -ldflags="-s -w" -o /usr/local/bin/webtunnel
 
 WORKDIR /
