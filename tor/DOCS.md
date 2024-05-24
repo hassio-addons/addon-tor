@@ -153,7 +153,7 @@ If you do not define a hostname or IP adress `homeassistant` will be used.
 
 ### Option: `bridges`
 
-> Keep the option value clean to avoid using any transport plugins and bridges.
+> Ensure the option value is clear to avoid unintended use of transport plugins and bridges.
 
 Bridges are Tor relays that help you circumvent censorship.
 Access to bridges is provided by supported transport plugins:
@@ -163,7 +163,7 @@ Access to bridges is provided by supported transport plugins:
 Because bridge addresses are not public, you will need to request them yourself. You have a few options:
 
 - Visit [Tor][tor-bridges-obfs4] project and follow the instructions, or
-- Email bridges@torproject.org from a Gmail, or Riseup email address
+- Email `bridges@torproject.org` from a Gmail, or Riseup email address
 - Send a message to @GetBridgesBot on Telegram. Tap on 'Start' or write /start or /bridges in the chat.
 
 For example:
