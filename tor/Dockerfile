@@ -41,7 +41,9 @@ WORKDIR /go/webtunnel/main/client
 RUN git reset --hard ${WEBTUNNEL_VERSION} \
     && go build -ldflags="-s -w" -o /usr/local/bin/webtunnel
 
+# Clean up after build
 WORKDIR /
+RUN rm -rf /go
 
 # Give transports clients the capability to bind privileged port.
 RUN setcap \

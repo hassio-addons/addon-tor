@@ -153,7 +153,7 @@ If you do not define a hostname or IP adress `homeassistant` will be used.
 
 ### Option: `bridges`
 
-> Keep the option value clean to avoid using of any transport plugins and bridges.
+> Keep the option value clean to avoid using any transport plugins and bridges.
 
 Bridges are Tor relays that help you circumvent censorship.
 Access to bridges is provided by supported transport plugins:
