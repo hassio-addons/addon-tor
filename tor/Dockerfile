@@ -13,7 +13,7 @@ RUN \
     apk add --no-cache \
         coreutils=9.5-r1 \
         openssl=3.3.1-r0 \
-        tor=0.4.8.11-r0
+        tor=0.4.8.12-r0
 
 HEALTHCHECK \
     --start-period=5m \
