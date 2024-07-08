@@ -12,11 +12,11 @@ COPY rootfs /
 RUN \
     apk add --no-cache \
         coreutils=9.5-r1 \
-        openssl=3.3.1-r2 \
+        openssl=3.3.1-r1 \
         tor=0.4.8.12-r0 \
         go=1.22.5-r0 \
-        git=2.45.2-r1 \
-        ca-certificates=20240705-r0 \
+        git=2.45.2-r0 \
+        ca-certificates=20240226-r0 \
         libcap=2.70-r0
 
 # Download pluggable-transports sources
