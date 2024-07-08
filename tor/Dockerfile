@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:15.0.9
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:16.1.2
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -9,10 +9,11 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 COPY rootfs /
 
 # Setup base
-RUN apk add --no-cache \
-        coreutils=9.4-r2 \
-        openssl=3.1.5-r0 \
-        tor=0.4.8.11-r0 \
+RUN \
+    apk add --no-cache \
+        coreutils=9.5-r1 \
+        openssl=3.3.1-r1 \
+        tor=0.4.8.12-r0 \
         go=1.21.10-r0 \
         git=2.43.4-r0 \
         ca-certificates=20240226-r0 \
