@@ -23,7 +23,7 @@ RUN \
 WORKDIR /go
 ARG OBFS_VERSION=obfs4proxy-0.0.14
 ARG SNOWFLAKE_VERSION=v2.9.2
-ARG WEBTUNNEL_VERSION=3b6faa48163782c1e5420bcb4b068cd38c401ea7
+ARG WEBTUNNEL_VERSION=e64b1b3562f3ab50d06141ecd513a21ec74fe8c6
 RUN git clone -b ${OBFS_VERSION} --single-branch --depth 1 https://github.com/Yawning/obfs4.git \
     && git clone -b ${SNOWFLAKE_VERSION} --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git \
     && git clone --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel.git
