@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:16.1.2
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:16.2.0
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -12,7 +12,7 @@ COPY rootfs /
 RUN \
     apk add --no-cache \
         coreutils=9.5-r1 \
-        openssl=3.3.1-r1 \
+        openssl=3.3.1-r3 \
         tor=0.4.8.12-r0 \
         go=1.22.4-r0 \
         git=2.45.2-r0 \
