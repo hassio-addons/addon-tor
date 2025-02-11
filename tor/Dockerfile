@@ -12,7 +12,7 @@ COPY rootfs /
 RUN \
     apk add --no-cache \
         coreutils=9.5-r2 \
-        openssl=3.3.2-r6 \
+        openssl=3.3.3-r0 \
         tor=0.4.8.14-r1
 
 HEALTHCHECK \
