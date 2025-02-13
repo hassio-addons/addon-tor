@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:16.2.0
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:17.1.3
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -11,13 +11,13 @@ COPY rootfs /
 # Setup base
 RUN \
     apk add --no-cache \
-        coreutils=9.5-r1 \
-        openssl=3.3.1-r3 \
-        tor=0.4.8.12-r0 \
-        go=1.22.5-r0 \
-        git=2.45.2-r0 \
-        ca-certificates=20240705-r0 \
-        libcap=2.70-r0
+        coreutils=9.5-r2 \
+        openssl=3.3.3-r0 \
+        tor=0.4.8.14-r1 \
+        go=1.23.6-r0 \
+        git=2.47.2-r0 \
+        ca-certificates=20241121-r1 \
+        libcap=2.71-r0
 
 # Download pluggable-transports sources
 WORKDIR /go
