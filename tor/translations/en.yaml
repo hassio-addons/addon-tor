@@ -33,7 +33,7 @@ configuration:
   bridges:
     name: Bridges
     description: >-
-      Configures bridges to establish connection with Tor Network. Check the
+      Configures bridges to establish a connection with the Tor network. Check the
       add-on documentation for the exact format to enter here.
   http_tunnel:
     name: HTTP proxy
