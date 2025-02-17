@@ -88,8 +88,8 @@ network, and allow anybody to use your computer as an open proxy._
 
 ### Option: `http_tunnel`
 
-Setting this option to `true` opens port `9080` to listen for connections from 
-HTTP-speaking applications. Enabling this feature allows you to use other 
+Setting this option to `true` opens port `9080` to listen for connections from
+HTTP-speaking applications. Enabling this feature allows you to use other
 applications on your network to use the Tor network via http proxy.
 
 ### Option: `hidden_services`
