@@ -14,41 +14,25 @@ RUN \
         coreutils=9.5-r2 \
         tor=0.4.8.14-r1 \
         go=1.23.6-r0 \
-        git=2.47.2-r0 \
-        ca-certificates=20241121-r1 \
-        libcap=2.71-r0
+        git=2.47.2-r0
 
-# Download pluggable-transports sources
-WORKDIR /go
+# Build pluggable-transports
 ARG OBFS_VERSION=obfs4proxy-0.0.14
 ARG SNOWFLAKE_VERSION=v2.10.1
 ARG WEBTUNNEL_VERSION=v0.0.2
-RUN git clone -b ${OBFS_VERSION} --single-branch --depth 1 https://github.com/Yawning/obfs4.git \
-    && git clone -b ${SNOWFLAKE_VERSION} --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git \
-    && git clone -b ${WEBTUNNEL_VERSION} --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel.git
-
-# Build obfs4proxy
-WORKDIR /go/obfs4
-RUN go build -o /usr/local/bin/obfs4proxy ./obfs4proxy
-
-# Build snowflake
-WORKDIR /go/snowflake/client
-RUN go get \
-    && go build -ldflags '-extldflags "-static" -w -s' -o /usr/local/bin/snowflake
-
-# Build webtunnel
-WORKDIR /go/webtunnel/main/client
-RUN go get \
-    && go build -ldflags="-s -w" -o /usr/local/bin/webtunnel
-
-# Clean up after build
-WORKDIR /
-RUN rm -rf /go
-
-# Give transports clients the capability to bind privileged port.
-RUN setcap 'cap_net_bind_service=+ep' /usr/local/bin/obfs4proxy \
-    && setcap 'cap_net_bind_service=+ep' /usr/local/bin/snowflake \
-    && setcap 'cap_net_bind_service=+ep' /usr/local/bin/webtunnel
+RUN git clone -b ${OBFS_VERSION} --single-branch --depth 1 https://github.com/Yawning/obfs4.git /go/obfs4 \
+    && cd /go/obfs4 \
+    && go build -o /usr/local/bin/obfs4proxy ./obfs4proxy \
+    && git clone -b ${SNOWFLAKE_VERSION} --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git /go/snowflake \
+    && cd /go/snowflake/client \
+    && go get \
+    && go build -ldflags '-extldflags "-static" -w -s' -o /usr/local/bin/snowflake \
+    && git clone -b ${WEBTUNNEL_VERSION} --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel.git /go/webtunnel \
+    && cd /go/webtunnel/main/client \
+    && go get \
+    && go build -ldflags="-s -w" -o /usr/local/bin/webtunnel \
+    && rm -rf /go \
+    && apk del go git
 
 HEALTHCHECK \
     --start-period=15m \
