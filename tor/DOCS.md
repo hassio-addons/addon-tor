@@ -91,7 +91,7 @@ network, and allow anybody to use your computer as an open proxy._
 
 Setting this option to `true` opens port `9080` to listen for connections from
 HTTP-speaking applications. Enabling this feature allows you to use other
-applications on your network to use the Tor network via http proxy.
+applications on your network to access the Tor network via the HTTP proxy.
 
 ### Option: `hidden_services`
 
