@@ -35,5 +35,11 @@ configuration:
     description: >-
       Configures bridges to establish connection with Tor Network. Check the
       add-on documentation for the exact format to enter here.
+  http_tunnel:
+    name: HTTP proxy
+    description: >-
+      Open this port to listen for proxy connections using the HTTP protocol 
+      instead of SOCKS.
 network:
   9050/tcp: Tor SOCKS proxy port
+  9080/tcp: Tor HTTP proxy port

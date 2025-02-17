@@ -89,6 +89,11 @@ else
     echo 'SOCKSPort 127.0.0.1:9050' >> "${torrc}"
 fi
 
+# Configure Http tunnel port
+if bashio::config.true 'http_tunnel'; then
+    echo 'HTTPTunnelPort 0.0.0.0:9080' >> "${torrc}"
+fi
+
 # Configure hidden services
 if bashio::config.true 'hidden_services'; then
     echo "HiddenServiceDir ${hidden_service_dir}" >> "${torrc}"

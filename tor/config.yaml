@@ -13,8 +13,10 @@ arch:
 init: false
 ports:
   9050/tcp: 9050
+  9080/tcp: 9080
 ports_description:
   9050/tcp: Tor SOCKS proxy port
+  9080/tcp: Tor HTTP proxy port
 map:
   - ssl:rw
 options:
@@ -29,6 +31,7 @@ options:
 schema:
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
   socks: bool
+  http_tunnel: bool
   hidden_services: bool
   stealth: bool
   client_names:
