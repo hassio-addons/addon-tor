@@ -21,6 +21,7 @@ map:
   - ssl:rw
 options:
   socks: false
+  http_tunnel: false
   hidden_services: true
   stealth: false
   client_names: []

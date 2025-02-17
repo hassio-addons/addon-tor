@@ -44,6 +44,7 @@ Example add-on configuration:
 ```yaml
 log_level: info
 socks: true
+http_tunnel: false
 hidden_services: true
 stealth: true
 client_names:
