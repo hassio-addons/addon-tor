@@ -51,7 +51,7 @@ RUN setcap 'cap_net_bind_service=+ep' /usr/local/bin/obfs4proxy \
     && setcap 'cap_net_bind_service=+ep'  /usr/local/bin/webtunnel
 
 HEALTHCHECK \
-    --start-period=60m \
+    --start-period=15m \
     --interval=60s \
     --timeout=30s \
     CMD curl \
