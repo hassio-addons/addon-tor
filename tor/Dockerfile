@@ -47,8 +47,8 @@ RUN rm -rf /go
 
 # Give transports clients the capability to bind privileged port.
 RUN setcap 'cap_net_bind_service=+ep' /usr/local/bin/obfs4proxy \
-    && setcap 'cap_net_bind_service=+ep'  /usr/local/bin/snowflake \
-    && setcap 'cap_net_bind_service=+ep'  /usr/local/bin/webtunnel
+    && setcap 'cap_net_bind_service=+ep' /usr/local/bin/snowflake \
+    && setcap 'cap_net_bind_service=+ep' /usr/local/bin/webtunnel
 
 HEALTHCHECK \
     --start-period=15m \

@@ -38,7 +38,7 @@ configuration:
   http_tunnel:
     name: HTTP proxy
     description: >-
-      Open this port to listen for proxy connections using the HTTP protocol 
+      Open this port to listen for proxy connections using the HTTP protocol
       instead of SOCKS.
 network:
   9050/tcp: Tor SOCKS proxy port
