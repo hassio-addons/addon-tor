@@ -19,20 +19,15 @@ RUN \
         tor=0.4.8.14-r1 \
         go=1.23.6-r0 \
         git=2.47.2-r0 \
-    && git clone -b ${OBFS_VERSION} --single-branch --depth 1 https://github.com/Yawning/obfs4.git /go/obfs4 \
-    && git clone -b ${SNOWFLAKE_VERSION} --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git /go/snowflake \
-    && git clone -b ${WEBTUNNEL_VERSION} --single-branch --depth 1 https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel.git /go/webtunnel
-
-WORKDIR /go/obfs4
-RUN go build -o /usr/local/bin/obfs4proxy ./obfs4proxy
-
-WORKDIR /go/snowflake/client
-RUN go get \
-    && go build -ldflags '-s -w' -o /usr/local/bin/snowflake
-
-WORKDIR /go/webtunnel/main/client
-RUN go get \
-    && go build -ldflags="-s -w" -o /usr/local/bin/webtunnel \
+    && git clone -b ${OBFS_VERSION} --single-branch --depth 1 \
+        https://github.com/Yawning/obfs4.git /go/obfs4 \
+    && go build -C /go/obfs4 -ldflags '-extldflags "-static" -s -w' -o /usr/local/bin/obfs4proxy ./obfs4proxy \
+    && git clone -b ${SNOWFLAKE_VERSION} --single-branch --depth 1 \
+        https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git /go/snowflake \
+    && go build -C /go/snowflake/client -ldflags '-extldflags "-static" -s -w' -o /usr/local/bin/snowflake \
+    && git clone -b ${WEBTUNNEL_VERSION} --single-branch --depth 1 \
+        https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel.git /go/webtunnel \
+    && go build -C /go/webtunnel/main/client -ldflags='-extldflags "-static" -s -w' -o /usr/local/bin/webtunnel \
     && rm -rf /go \
     && apk del go git
 
