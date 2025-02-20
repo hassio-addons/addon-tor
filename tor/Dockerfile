@@ -29,8 +29,8 @@ RUN \
     && git clone -b "${WEBTUNNEL_VERSION}" --single-branch --depth 1 \
         https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel.git /tmp/webtunnel \
     && go build -C /tmp/webtunnel/main/client -ldflags='-extldflags "-static" -s -w' -o /usr/local/bin/webtunnel \
-    && rm -rf /tmp \
-    && apk del go git
+    && apk del --no-cache --purge .build-dependencies \
+    && rm -rf /tmp/*
 
 HEALTHCHECK \
     --start-period=15m \
