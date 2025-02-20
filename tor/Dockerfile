@@ -17,18 +17,19 @@ RUN \
     apk add --no-cache \
         coreutils=9.5-r2 \
         tor=0.4.8.14-r1 \
+    && apk add --no-cache --virtual .build-dependencies \
         go=1.23.6-r0 \
         git=2.47.2-r0 \
     && git clone -b "${OBFS_VERSION}" --single-branch --depth 1 \
-        https://github.com/Yawning/obfs4.git /go/obfs4 \
-    && go build -C /go/obfs4 -ldflags '-extldflags "-static" -s -w' -o /usr/local/bin/obfs4proxy ./obfs4proxy \
+        https://github.com/Yawning/obfs4.git /tmp/obfs4 \
+    && go build -C /tmp/obfs4 -ldflags '-extldflags "-static" -s -w' -o /usr/local/bin/obfs4proxy ./obfs4proxy \
     && git clone -b "${SNOWFLAKE_VERSION}" --single-branch --depth 1 \
-        https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git /go/snowflake \
-    && go build -C /go/snowflake/client -ldflags '-extldflags "-static" -s -w' -o /usr/local/bin/snowflake \
+        https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake.git /tmp/snowflake \
+    && go build -C /tmp/snowflake/client -ldflags '-extldflags "-static" -s -w' -o /usr/local/bin/snowflake \
     && git clone -b "${WEBTUNNEL_VERSION}" --single-branch --depth 1 \
-        https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel.git /go/webtunnel \
-    && go build -C /go/webtunnel/main/client -ldflags='-extldflags "-static" -s -w' -o /usr/local/bin/webtunnel \
-    && rm -rf /go \
+        https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/webtunnel.git /tmp/webtunnel \
+    && go build -C /tmp/webtunnel/main/client -ldflags='-extldflags "-static" -s -w' -o /usr/local/bin/webtunnel \
+    && rm -rf /tmp \
     && apk del go git
 
 HEALTHCHECK \
