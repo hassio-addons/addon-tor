@@ -89,6 +89,11 @@ else
     echo 'SOCKSPort 127.0.0.1:9050' >> "${torrc}"
 fi
 
+# Configure Http tunnel port
+if bashio::config.true 'http_tunnel'; then
+    echo 'HTTPTunnelPort 0.0.0.0:9080' >> "${torrc}"
+fi
+
 # Configure hidden services
 if bashio::config.true 'hidden_services'; then
     echo "HiddenServiceDir ${hidden_service_dir}" >> "${torrc}"
@@ -123,6 +128,29 @@ if bashio::config.true 'hidden_services'; then
                 >> "${torrc}"
         fi
     done
+fi
+
+# Configure bridges
+if bashio::config.exists 'bridges' \
+    && ! bashio::config.is_empty 'bridges';
+then
+    bashio::log.info 'Use bridges:'
+    echo "UseBridges 1" >> "${torrc}"
+
+    # Add client for OBFS transport
+    echo "ClientTransportPlugin obfs2,obfs3,obfs4,scramblesuit exec /usr/local/bin/obfs4proxy managed" >> "${torrc}"
+    
+    # Add client for Snowflake transport
+    echo "ClientTransportPlugin snowflake exec /usr/local/bin/snowflake" >> "${torrc}"
+
+    # Add client for WebTunnel transport
+    echo "ClientTransportPlugin webtunnel exec /usr/local/bin/webtunnel" >> "${torrc}"
+    
+    # Add bridges
+    while read -r bridge; do
+        bashio::log.info "Bridge ${bridge}"
+        echo "Bridge ${bridge}" >> "${torrc}"
+    done <<< "$(bashio::config 'bridges')"
 fi
 
 # Figure out the address

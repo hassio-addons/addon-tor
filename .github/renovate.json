@@ -24,6 +24,31 @@
       "versioningTemplate": "loose",
       "datasourceTemplate": "repology",
       "depNameTemplate": "alpine_3_21/{{package}}"
+    },
+    {
+      "fileMatch": ["/Dockerfile$"],
+      "matchStrings": ["ARG OBFS_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s+"],
+      "versioningTemplate": "loose",
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "Yawning/obfs4"
+    },
+    {
+      "fileMatch": ["/Dockerfile$"],
+      "matchStrings": [
+        "ARG SNOWFLAKE_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s+"
+      ],
+      "versioningTemplate": "loose",
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "tpo/anti-censorship/pluggable-transports/snowflake"
+    },
+    {
+      "fileMatch": ["/Dockerfile$"],
+      "matchStrings": [
+        "ARG WEBTUNNEL_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s+"
+      ],
+      "versioningTemplate": "loose",
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "tpo/anti-censorship/pluggable-transports/webtunnel"
     }
   ],
   "packageRules": [
