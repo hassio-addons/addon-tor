@@ -18,7 +18,7 @@ RUN \
         coreutils=9.5-r2 \
         tor=0.4.8.14-r1 \
     && apk add --no-cache --virtual .build-dependencies \
-        go=1.23.6-r0 \
+        go=1.23.7-r0 \
         git=2.47.2-r0 \
     && git clone -b "${OBFS_VERSION}" --single-branch --depth 1 \
         https://github.com/Yawning/obfs4.git /tmp/obfs4 \
