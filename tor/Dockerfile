@@ -16,7 +16,7 @@ ARG WEBTUNNEL_VERSION=v0.0.2
 RUN \
     apk add --no-cache \
         coreutils=9.5-r2 \
-        tor=0.4.8.14-r1 \
+        tor=0.4.8.15-r0 \
     && apk add --no-cache --virtual .build-dependencies \
         go=1.23.7-r0 \
         git=2.47.2-r0 \
