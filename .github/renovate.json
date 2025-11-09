@@ -5,9 +5,10 @@
   "labels": ["dependencies", "no-stale"],
   "commitMessagePrefix": "⬆️",
   "commitMessageTopic": "{{depName}}",
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": ["/Dockerfile$", "/build.yaml$"],
+      "customType": "regex",
+      "managerFilePatterns": ["//Dockerfile$/", "//build.yaml$/"],
       "matchStringsStrategy": "any",
       "matchStrings": [
         "ARG BUILD_FROM=(?<depName>.*?):(?<currentValue>.*?)\\s+",
@@ -16,7 +17,8 @@
       "datasourceTemplate": "docker"
     },
     {
-      "fileMatch": ["/Dockerfile$"],
+      "customType": "regex",
+      "managerFilePatterns": ["//Dockerfile$/"],
       "matchStringsStrategy": "any",
       "matchStrings": [
         "\\s\\s(?<package>[a-z0-9][a-z0-9-]+)=(?<currentValue>[a-z0-9-_.]+)\\s+"
@@ -26,14 +28,16 @@
       "depNameTemplate": "alpine_3_22/{{package}}"
     },
     {
-      "fileMatch": ["/Dockerfile$"],
+      "customType": "regex",
+      "managerFilePatterns": ["//Dockerfile$/"],
       "matchStrings": ["ARG OBFS_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s+"],
       "versioningTemplate": "loose",
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "Yawning/obfs4"
     },
     {
-      "fileMatch": ["/Dockerfile$"],
+      "customType": "regex",
+      "managerFilePatterns": ["//Dockerfile$/"],
       "matchStrings": [
         "ARG SNOWFLAKE_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s+"
       ],
@@ -42,7 +46,8 @@
       "depNameTemplate": "tpo/anti-censorship/pluggable-transports/snowflake"
     },
     {
-      "fileMatch": ["/Dockerfile$"],
+      "customType": "regex",
+      "managerFilePatterns": ["//Dockerfile$/"],
       "matchStrings": [
         "ARG WEBTUNNEL_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s+"
       ],
