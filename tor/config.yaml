@@ -8,7 +8,6 @@ startup: services
 arch:
   - aarch64
   - amd64
-  - armv7
 init: false
 ports:
   9050/tcp: 9050
