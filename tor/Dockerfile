@@ -19,7 +19,7 @@ RUN \
         openssl=3.5.8-r0 \
         tor=0.4.9.11-r0 \
     && apk add --no-cache --virtual .build-dependencies \
-        go=1.26.3-r0 \
+        go=1.26.8-r0 \
         git=2.54.0-r0 \
     && git clone -b "${OBFS_VERSION}" --single-branch --depth 1 \
         https://github.com/Yawning/obfs4.git /tmp/obfs4 \
