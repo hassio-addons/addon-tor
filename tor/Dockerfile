@@ -17,7 +17,7 @@ RUN \
     apk add --no-cache \
         coreutils=9.11-r0 \
         openssl=3.5.8-r0 \
-        tor=0.4.9.11-r0 \
+        tor=0.4.9.12-r0 \
     && apk add --no-cache --virtual .build-dependencies \
         go=1.26.8-r0 \
         git=2.54.0-r0 \
